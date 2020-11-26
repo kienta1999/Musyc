@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="1955" y="129"/>
         </scene>
-        <!--Searching Result-->
+        <!--Search-->
         <scene sceneID="mlE-Iz-595">
             <objects>
                 <viewController id="AqN-ea-Dod" customClass="SearchViewController" customModule="MUSYC" customModuleProvider="target" sceneMemberID="viewController">
@@ -45,7 +45,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="27R-aW-Osr"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Searching Result" id="xea-jn-AI5"/>
+                    <tabBarItem key="tabBarItem" title="Search" image="magnifyingglass" catalog="system" id="xea-jn-AI5"/>
                     <connections>
                         <outlet property="trackQuery" destination="2mD-N5-k4v" id="9mC-tj-pdl"/>
                         <outlet property="trackTableView" destination="66D-PL-w3u" id="vOr-jD-Tf7"/>
@@ -65,7 +65,7 @@
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GC2-fE-U4U"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Albums" id="Hzl-Bf-MFD"/>
+                    <tabBarItem key="tabBarItem" title="Albums" image="music.note" catalog="system" id="Hzl-Bf-MFD"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3U-ei-vlE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -177,11 +177,11 @@
             </objects>
             <point key="canvasLocation" x="-255" y="1073"/>
         </scene>
-        <!--Current Playing-->
+        <!--Playing-->
         <scene sceneID="qSO-Hp-XYD">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="feB-34-GGm" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Current Playing" id="n06-XN-OdW"/>
+                    <tabBarItem key="tabBarItem" title="Playing" image="play" catalog="system" id="n06-XN-OdW"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="tfD-bi-X3J">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -200,7 +200,7 @@
         <scene sceneID="7To-OV-OqS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bYb-Xm-Akb" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="User" id="ahh-br-qsg"/>
+                    <tabBarItem key="tabBarItem" title="User" image="person" catalog="system" id="ahh-br-qsg"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="GL6-Mq-PZY">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -216,4 +216,10 @@
             <point key="canvasLocation" x="1039.1304347826087" y="2444.1964285714284"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="magnifyingglass" catalog="system" width="128" height="115"/>
+        <image name="music.note" catalog="system" width="97" height="128"/>
+        <image name="person" catalog="system" width="128" height="117"/>
+        <image name="play" catalog="system" width="120" height="128"/>
+    </resources>
 </document>

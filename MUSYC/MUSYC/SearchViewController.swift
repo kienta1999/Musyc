@@ -46,7 +46,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             super.viewDidLoad()
             // Do any additional setup after loading the view.
             access_token = getAccessToken()
-            print(access_token)
+            //print(access_token)
             setupTableView()
             trackQuery.delegate = self
         }
@@ -123,7 +123,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         ]
         print(components.url!)
         var request = URLRequest(url: components.url!)
-            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
         request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
 //        request.httpBody = Data(query!.utf8)
@@ -147,14 +147,15 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
             let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
             print(responseString)
+            
             do{
-                if let json = responseString.data(using: String.Encoding.utf8){
+                if let json = responseString.data(using: .utf8){
                     if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? APIResults{
-                         var tempTrack:[String] = []
+                        var tempTrack:[String] = []
                         for element in jsonData.items{
                              tempTrack.append(element.name)
                              print(element.name)
-                         }
+                        }
                         self.theData = tempTrack
                     }
                     else{
