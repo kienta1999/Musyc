@@ -8,23 +8,47 @@
 
 import UIKit
 
-class SearchViewController: UIViewController {
-
-      
+class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, UISearchBarDelegate {
         struct Token: Decodable {
           let access_token: String
-      }
+        }
+        
+        var theData: [String] = [] {
+            didSet{
+                trackTableView.reloadData()
+            }
+        }
+    
+        struct APIResults:Decodable {
+            let href: String
+            let items: [Track]
+            let limit: Int
+            let next: String?
+            let offset: Int
+            let previous: String?
+            let total: Int
+        }
+        
+        struct Track: Decodable {
+            let name: String
+        }
 
         //let client_id = "4c4b5879f3d74b2fac7b995cca064abd";
         //let client_secret = "027be414fc074154aa5bbe847fe2f354"
 
         var access_token = "not-available";
+        
+    @IBOutlet weak var trackQuery: UISearchBar!
+    
+    @IBOutlet weak var trackTableView: UITableView!
+    
         override func viewDidLoad() {
             super.viewDidLoad()
             // Do any additional setup after loading the view.
-            let access_token = getAccessToken()
+            access_token = getAccessToken()
             print(access_token)
-            
+            setupTableView()
+            trackQuery.delegate = self
         }
         
         
@@ -73,7 +97,95 @@ class SearchViewController: UIViewController {
             return ans
         }
     
+        func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+            return theData.count
+        }
         
+        func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+            let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
+            myCell.textLabel!.text = theData[indexPath.row]
+            return myCell
+        }
+    
+    func setupTableView(){
+        trackTableView.dataSource = self
+        trackTableView.delegate = self
+        trackTableView.register(UITableViewCell.self, forCellReuseIdentifier: "theCell")
+    }
+    
+    func fetchTracksForTableiew() {
+        let url = URL(string: "https://api.spotify.com/v1/search")!
+        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
+
+        components.queryItems = [
+            URLQueryItem(name: "q", value: self.trackQuery.text!),
+            URLQueryItem(name: "type", value: "track")
+        ]
+        print(components.url!)
+        var request = URLRequest(url: components.url!)
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+        request.httpMethod = "GET"
+//        request.httpBody = Data(query!.utf8)
+
+        let task = URLSession.shared.dataTask(with: request) { data, response, error in
+            
+            guard let data = data,
+                let response = response as? HTTPURLResponse,
+                error == nil else {                                              // check for fundamental networking error
+                print("error", error ?? "Unknown error")
+                return
+            }
+
+            guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
+                print("statusCode should be 2xx, but is \(response.statusCode)")
+                print("response = \(response)")
+                //the access token is expired - need to get a new one
+                self.access_token = self.getAccessToken()
+                self.fetchTracksForTableiew()
+                return
+            }
+            let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
+            print(responseString)
+            do{
+                if let json = responseString.data(using: String.Encoding.utf8){
+                    if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? APIResults{
+                         var tempTrack:[String] = []
+                        for element in jsonData.items{
+                             tempTrack.append(element.name)
+                             print(element.name)
+                         }
+                        self.theData = tempTrack
+                    }
+                    else{
+                        print("Still bad json")
+                    }
+                }
+            }catch {
+                print("Bad json")
+                print(error.localizedDescription)
+
+            }
+//            do{
+//                let tempData = (try JSONDecoder().decode(APIResults.self, from: Data(responseString.utf8))).items
+//                var tempTrack:[String] = []
+//                for element in tempData{
+//                    tempTrack.append(element.name)
+//                }
+//                self.theData = tempTrack
+//            }
+//            catch{
+//                print("Not valid json")
+//            }
+        }
+        task.resume()
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        fetchTracksForTableiew()
+    }
+    
+    
     
 
     /*

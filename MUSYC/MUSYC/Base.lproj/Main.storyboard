@@ -46,6 +46,10 @@
                         <viewLayoutGuide key="safeArea" id="27R-aW-Osr"/>
                     </view>
                     <tabBarItem key="tabBarItem" title="Searching Result" id="xea-jn-AI5"/>
+                    <connections>
+                        <outlet property="trackQuery" destination="2mD-N5-k4v" id="9mC-tj-pdl"/>
+                        <outlet property="trackTableView" destination="66D-PL-w3u" id="vOr-jD-Tf7"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yFV-qg-ppe" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
