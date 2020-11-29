@@ -3,10 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		507DA7752571C52B00212DA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507DA7742571C52B00212DA7 /* GoogleService-Info.plist */; };
+		50B6B32E2571DC8B006E8D43 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */; };
+		50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */; };
+		50B6B3322572C22D006E8D43 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B3312572C22D006E8D43 /* HomeViewController.swift */; };
+		50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B3372572D108006E8D43 /* LoginPageViewController.swift */; };
+		50B6B33A2572DE4B006E8D43 /* others.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B3392572DE4B006E8D43 /* others.swift */; };
+		50B6B33C2572FFDD006E8D43 /* invariable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B33B2572FFDD006E8D43 /* invariable.swift */; };
+		65D9446CC7AC687A72D6096C /* Pods_MUSYC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DC99187DE6B895768A8434F2 /* Pods_MUSYC.framework */; };
 		7829E4FB256230E70049E4A0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829E4FA256230E70049E4A0 /* AppDelegate.swift */; };
 		7829E4FD256230E70049E4A0 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829E4FC256230E70049E4A0 /* SceneDelegate.swift */; };
 		7829E4FF256230E70049E4A0 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7829E4FE256230E70049E4A0 /* ViewController.swift */; };
@@ -17,6 +25,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		507DA7742571C52B00212DA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
+		50B6B3312572C22D006E8D43 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		50B6B3372572D108006E8D43 /* LoginPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginPageViewController.swift; sourceTree = "<group>"; };
+		50B6B3392572DE4B006E8D43 /* others.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = others.swift; sourceTree = "<group>"; };
+		50B6B33B2572FFDD006E8D43 /* invariable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = invariable.swift; sourceTree = "<group>"; };
 		7829E4F7256230E70049E4A0 /* MUSYC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MUSYC.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7829E4FA256230E70049E4A0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7829E4FC256230E70049E4A0 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -25,7 +40,10 @@
 		7829E503256230E80049E4A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7829E506256230E80049E4A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7829E508256230E80049E4A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.debug.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.debug.xcconfig"; sourceTree = "<group>"; };
+		82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.release.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.release.xcconfig"; sourceTree = "<group>"; };
 		AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		DC99187DE6B895768A8434F2 /* Pods_MUSYC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MUSYC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -33,17 +51,50 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				65D9446CC7AC687A72D6096C /* Pods_MUSYC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		50B6B32C2571DC36006E8D43 /* Login page Controller */ = {
+			isa = PBXGroup;
+			children = (
+				50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */,
+				50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */,
+				50B6B3312572C22D006E8D43 /* HomeViewController.swift */,
+				50B6B3372572D108006E8D43 /* LoginPageViewController.swift */,
+				50B6B3392572DE4B006E8D43 /* others.swift */,
+				50B6B33B2572FFDD006E8D43 /* invariable.swift */,
+			);
+			path = "Login page Controller";
+			sourceTree = "<group>";
+		};
+		56B2328DDD2B9DA4031D43DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				DC99187DE6B895768A8434F2 /* Pods_MUSYC.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		688953952FB5173F6D4BB299 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */,
+				82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		7829E4EE256230E70049E4A0 = {
 			isa = PBXGroup;
 			children = (
 				7829E4F9256230E70049E4A0 /* MUSYC */,
 				7829E4F8256230E70049E4A0 /* Products */,
+				688953952FB5173F6D4BB299 /* Pods */,
+				56B2328DDD2B9DA4031D43DA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -58,6 +109,7 @@
 		7829E4F9256230E70049E4A0 /* MUSYC */ = {
 			isa = PBXGroup;
 			children = (
+				50B6B32C2571DC36006E8D43 /* Login page Controller */,
 				7829E4FA256230E70049E4A0 /* AppDelegate.swift */,
 				7829E4FC256230E70049E4A0 /* SceneDelegate.swift */,
 				7829E4FE256230E70049E4A0 /* ViewController.swift */,
@@ -66,6 +118,7 @@
 				7829E505256230E80049E4A0 /* LaunchScreen.storyboard */,
 				7829E508256230E80049E4A0 /* Info.plist */,
 				AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */,
+				507DA7742571C52B00212DA7 /* GoogleService-Info.plist */,
 			);
 			path = MUSYC;
 			sourceTree = "<group>";
@@ -77,9 +130,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7829E50B256230E80049E4A0 /* Build configuration list for PBXNativeTarget "MUSYC" */;
 			buildPhases = (
+				35C6B60C0CADE6E3B68514E3 /* [CP] Check Pods Manifest.lock */,
 				7829E4F3256230E70049E4A0 /* Sources */,
 				7829E4F4256230E70049E4A0 /* Frameworks */,
 				7829E4F5256230E70049E4A0 /* Resources */,
+				5A53D185ABA5E17961153A3F /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -129,12 +184,55 @@
 			buildActionMask = 2147483647;
 			files = (
 				7829E507256230E80049E4A0 /* LaunchScreen.storyboard in Resources */,
+				507DA7752571C52B00212DA7 /* GoogleService-Info.plist in Resources */,
 				7829E504256230E80049E4A0 /* Assets.xcassets in Resources */,
 				7829E502256230E70049E4A0 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		35C6B60C0CADE6E3B68514E3 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-MUSYC-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5A53D185ABA5E17961153A3F /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MUSYC/Pods-MUSYC-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-MUSYC/Pods-MUSYC-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-MUSYC/Pods-MUSYC-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7829E4F3256230E70049E4A0 /* Sources */ = {
@@ -143,8 +241,14 @@
 			files = (
 				7829E4FF256230E70049E4A0 /* ViewController.swift in Sources */,
 				7829E4FB256230E70049E4A0 /* AppDelegate.swift in Sources */,
+				50B6B33C2572FFDD006E8D43 /* invariable.swift in Sources */,
+				50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */,
 				AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */,
 				7829E4FD256230E70049E4A0 /* SceneDelegate.swift in Sources */,
+				50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */,
+				50B6B33A2572DE4B006E8D43 /* others.swift in Sources */,
+				50B6B3322572C22D006E8D43 /* HomeViewController.swift in Sources */,
+				50B6B32E2571DC8B006E8D43 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -286,6 +390,7 @@
 		};
 		7829E50C256230E80049E4A0 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -304,6 +409,7 @@
 		};
 		7829E50D256230E80049E4A0 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
