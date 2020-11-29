@@ -37,7 +37,7 @@ class TrackDetailedViewController: UIViewController {
         textView.textAlignment = .center
         view.addSubview(textView)
         
-        //play(urlPreview) uncomment here
+        //play(urlPreview)
     }
     
     func getImage(_ path: String) -> UIImage{

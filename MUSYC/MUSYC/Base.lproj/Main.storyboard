@@ -58,7 +58,6 @@
         <!--Track Detailed View Controller-->
         <scene sceneID="NTP-T1-RwF">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="drF-In-yqk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <viewController id="RSM-xf-DLn" customClass="TrackDetailedViewController" customModule="MUSYC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="UeX-N6-fO0">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
@@ -73,6 +72,7 @@
                         <viewLayoutGuide key="safeArea" id="44j-AN-NJp"/>
                     </view>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="drF-In-yqk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2818.4000000000001" y="870.44334975369463"/>
         </scene>
@@ -229,7 +229,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.7691888182043376" green="0.91295745908247639" blue="0.9586410921905677" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="obJ-JS-yJV" firstAttribute="trailing" secondItem="CEC-RL-u9g" secondAttribute="trailing" constant="45" id="dYM-Lx-wKy"/>
                             <constraint firstItem="CEC-RL-u9g" firstAttribute="top" secondItem="obJ-JS-yJV" secondAttribute="top" constant="50" id="iFq-q6-nfR"/>
@@ -303,7 +303,7 @@
                                 </subviews>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.79498100501857349" green="0.93966442493458058" blue="0.99260579853157727" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                         <constraints>
                             <constraint firstItem="dff-3H-hAg" firstAttribute="leading" secondItem="xtZ-Kh-GbY" secondAttribute="leading" constant="45" id="49e-hL-k6w"/>
                             <constraint firstItem="dff-3H-hAg" firstAttribute="top" secondItem="xtZ-Kh-GbY" secondAttribute="top" constant="45" id="CKt-HB-zSZ"/>
