@@ -22,6 +22,7 @@
 		7829E504256230E80049E4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7829E503256230E80049E4A0 /* Assets.xcassets */; };
 		7829E507256230E80049E4A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7829E505256230E80049E4A0 /* LaunchScreen.storyboard */; };
 		AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */; };
+		ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -43,6 +44,7 @@
 		7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.debug.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.debug.xcconfig"; sourceTree = "<group>"; };
 		82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.release.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.release.xcconfig"; sourceTree = "<group>"; };
 		AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailedViewController.swift; sourceTree = "<group>"; };
 		DC99187DE6B895768A8434F2 /* Pods_MUSYC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MUSYC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -119,6 +121,7 @@
 				7829E508256230E80049E4A0 /* Info.plist */,
 				AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */,
 				507DA7742571C52B00212DA7 /* GoogleService-Info.plist */,
+				ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */,
 			);
 			path = MUSYC;
 			sourceTree = "<group>";
@@ -243,6 +246,7 @@
 				7829E4FB256230E70049E4A0 /* AppDelegate.swift in Sources */,
 				50B6B33C2572FFDD006E8D43 /* invariable.swift in Sources */,
 				50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */,
+				ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */,
 				AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */,
 				7829E4FD256230E70049E4A0 /* SceneDelegate.swift in Sources */,
 				50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */,

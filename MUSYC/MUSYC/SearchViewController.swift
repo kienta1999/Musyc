@@ -21,6 +21,11 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     
+    var theImage: [String] = []
+    
+        struct APIResultsWrapper: Decodable{
+            let tracks: APIResults
+        }
         struct APIResults:Decodable {
             let href: String
             let items: [Track]
@@ -33,11 +38,16 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         struct Track: Decodable {
             let name: String
+            let album: Album
         }
-    
-    struct APIResultsWrapper: Decodable{
-        let tracks: APIResults
-    }
+        struct Album: Decodable{
+            let images: [AlbumImage]
+        }
+        struct AlbumImage: Decodable{
+            let url: String
+        }
+        
+        
 
         //let client_id = "4c4b5879f3d74b2fac7b995cca064abd";
         //let client_secret = "027be414fc074154aa5bbe847fe2f354"
@@ -120,6 +130,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     }
     
     func fetchTracksForTableiew() {
+        theImage = []
         let url = URL(string: "https://api.spotify.com/v1/search")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
@@ -147,8 +158,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 print("statusCode should be 2xx, but is \(response.statusCode)")
                 print("response = \(response)")
                 //the access token is expired - need to get a new one
-                self.access_token = self.getAccessToken()
-                self.fetchTracksForTableiew()
+                if(response.statusCode == 401){
+                    self.access_token = self.getAccessToken()
+                    self.fetchTracksForTableiew()
+                }
                 return
             }
             let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
@@ -160,6 +173,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 var tempTrack:[String] = []
                 for element in tempData{
                     tempTrack.append(element.name)
+                    self.theImage.append(element.album.images[0].url)
                 }
                 self.theData = tempTrack
             }
@@ -169,6 +183,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
         
         task.resume()
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailedVC = TrackDetailedViewController()
+        let index = indexPath.row
+        print(index)
+        detailedVC.trackTitle = theData[index]
+        detailedVC.urlImg = theImage[index]
+        print(theData[index])
+        print(theImage[index])
+        navigationController?.pushViewController(detailedVC, animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
