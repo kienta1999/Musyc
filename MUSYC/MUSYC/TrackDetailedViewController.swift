@@ -14,6 +14,7 @@ class TrackDetailedViewController: UIViewController {
     var trackTitle: String!
     var urlImg: String!
     var urlPreview: String!
+    var player: AVPlayer!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +37,8 @@ class TrackDetailedViewController: UIViewController {
        textView.textAlignment = .center
        view.addSubview(textView)
         
-//        print(urlPreview)
-//        play(urlPreview)
+        print(urlPreview)
+        play(urlPreview)
     }
     
     func getImage(_ path: String) -> UIImage{
@@ -49,13 +50,16 @@ class TrackDetailedViewController: UIViewController {
         return UIImage(data: data!)!
     }
     
-    func play(_ path: String) {
-        print("playing \(path)")
-        let url = URL(string: path)!
+    func play(_ path: String?) {
+        if(path == nil){
+            return
+        }
+        print("playing \(path!)")
         do {
+            let url = URL(string: path!)!
             let playerItem = AVPlayerItem(url: url)
 
-            var player = try AVPlayer(playerItem:playerItem)
+            player = try AVPlayer(playerItem:playerItem)
             player.volume = 1.0
             player.play()
         } catch {
