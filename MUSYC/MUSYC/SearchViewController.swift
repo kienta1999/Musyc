@@ -99,7 +99,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 ans = responseString!.components(separatedBy: "\"")[3]
             }
             task.resume()
-//            sleep(1)
+            sleep(1)
             return ans
         }
     
