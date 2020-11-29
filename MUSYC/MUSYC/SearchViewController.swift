@@ -40,7 +40,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         struct Track: Decodable {
             let name: String
             let album: Album
-            let preview_url: String!
+//            let preview_url: String!
         }
         struct Album: Decodable{
             let images: [AlbumImage]
@@ -178,7 +178,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for element in tempData{
                     tempTrack.append(element.name)
                     self.theImage.append(element.album.images[0].url)
-                    self.thePreviewUrl.append(element.preview_url)
+//                    self.thePreviewUrl.append(element.preview_url!)
                 }
                 self.theData = tempTrack
             }
@@ -196,7 +196,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(index)
         detailedVC.trackTitle = theData[index]
         detailedVC.urlImg = theImage[index]
-        detailedVC.urlPreview = thePreviewUrl[index]
+//        detailedVC.urlPreview = thePreviewUrl[index]
         self.navigationController?.pushViewController(detailedVC, animated: true)
     }
     
