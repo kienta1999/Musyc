@@ -21,8 +21,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             }
         }
     
-    var theImage: [String] = []
-    var thePreviewUrl: [String?] = []
+        var theImage: [String] = []
+        var thePreviewUrl: [String?] = []
     
         struct APIResultsWrapper: Decodable{
             let tracks: APIResults
@@ -56,9 +56,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
 
         var access_token = "not-available";
         
-    @IBOutlet weak var trackQuery: UISearchBar!
+        @IBOutlet weak var trackQuery: UISearchBar!
     
-    @IBOutlet weak var trackTableView: UITableView!
+        @IBOutlet weak var trackTableView: UITableView!
     
         override func viewDidLoad() {
             super.viewDidLoad()
@@ -126,87 +126,83 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             return myCell
         }
     
-    func setupTableView(){
-        trackTableView.dataSource = self
-        trackTableView.delegate = self
-        trackTableView.register(UITableViewCell.self, forCellReuseIdentifier: "theCell")
-    }
-    
-    func fetchTracksForTableiew() {
-        theImage = []
-        thePreviewUrl = []
-        let url = URL(string: "https://api.spotify.com/v1/search")!
-        var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
-
-        components.queryItems = [
-            URLQueryItem(name: "q", value: self.trackQuery.text!),
-            URLQueryItem(name: "type", value: "track")
-        ]
-        print(components.url!)
-        var request = URLRequest(url: components.url!)
-        request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-        request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
-        request.httpMethod = "GET"
-//        request.httpBody = Data(query!.utf8)
-
-        let task = URLSession.shared.dataTask(with: request) { data, response, error in
-            
-            guard let data = data,
-                let response = response as? HTTPURLResponse,
-                error == nil else {                                              // check for fundamental networking error
-                print("error", error ?? "Unknown error")
-                return
-            }
-
-            guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
-                print("statusCode should be 2xx, but is \(response.statusCode)")
-                print("response = \(response)")
-                //the access token is expired - need to get a new one
-                if(response.statusCode == 401){
-                    self.access_token = self.getAccessToken()
-                    self.fetchTracksForTableiew()
-                }
-                return
-            }
-            let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
-            print(responseString)
-            
-            
-            do{
-                let tempData = (try JSONDecoder().decode(APIResultsWrapper.self, from: Data(responseString.utf8))).tracks.items
-                var tempTrack:[String] = []
-                for element in tempData{
-                    tempTrack.append(element.name)
-                    self.theImage.append(element.album.images[0].url)
-                    self.thePreviewUrl.append(element.preview_url ?? nil)
-                }
-                self.theData = tempTrack
-            }
-            catch{
-                print("Not valid json")
-            }
+        func setupTableView(){
+            trackTableView.dataSource = self
+            trackTableView.delegate = self
+            trackTableView.register(UITableViewCell.self, forCellReuseIdentifier: "theCell")
         }
         
-        task.resume()
-    }
-    
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let detailedVC = TrackDetailedViewController()
-        let index = indexPath.row
-        print(index)
-        detailedVC.trackTitle = theData[index]
-        detailedVC.urlImg = theImage[index]
-        detailedVC.urlPreview = thePreviewUrl[index]
-        self.navigationController?.pushViewController(detailedVC, animated: true)
-    }
-    
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        fetchTracksForTableiew()
-    }
-    
-    
-    
+        func fetchTracksForTableiew() {
+            theImage = []
+            thePreviewUrl = []
+            let url = URL(string: "https://api.spotify.com/v1/search")!
+            var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
+            components.queryItems = [
+                URLQueryItem(name: "q", value: self.trackQuery.text!),
+                URLQueryItem(name: "type", value: "track")
+            ]
+            print(components.url!)
+            var request = URLRequest(url: components.url!)
+            request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
+            request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+            request.httpMethod = "GET"
+    //        request.httpBody = Data(query!.utf8)
+
+            let task = URLSession.shared.dataTask(with: request) { data, response, error in
+                
+                guard let data = data,
+                    let response = response as? HTTPURLResponse,
+                    error == nil else {                                              // check for fundamental networking error
+                    print("error", error ?? "Unknown error")
+                    return
+                }
+
+                guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
+                    print("statusCode should be 2xx, but is \(response.statusCode)")
+                    print("response = \(response)")
+                    //the access token is expired - need to get a new one
+                    if(response.statusCode == 401){
+                        self.access_token = self.getAccessToken()
+                        self.fetchTracksForTableiew()
+                    }
+                    return
+                }
+                let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
+                print(responseString)
+                
+                
+                do{
+                    let tempData = (try JSONDecoder().decode(APIResultsWrapper.self, from: Data(responseString.utf8))).tracks.items
+                    var tempTrack:[String] = []
+                    for element in tempData{
+                        tempTrack.append(element.name)
+                        self.theImage.append(element.album.images[0].url)
+                        self.thePreviewUrl.append(element.preview_url ?? nil)
+                    }
+                    self.theData = tempTrack
+                }
+                catch{
+                    print("Not valid json")
+                }
+            }
+            
+            task.resume()
+        }
+        
+        func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+            let detailedVC = TrackDetailedViewController()
+            let index = indexPath.row
+            detailedVC.trackTitle = theData[index]
+            detailedVC.urlImg = theImage[index]
+            detailedVC.urlPreview = thePreviewUrl[index]
+            self.navigationController?.pushViewController(detailedVC, animated: true)
+        }
+        
+        func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+            fetchTracksForTableiew()
+        }
+    
     /*
     // MARK: - Navigation
 

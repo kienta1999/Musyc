@@ -32,13 +32,12 @@ class TrackDetailedViewController: UIViewController {
         
         
         let theTextFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
-       let textView = UILabel(frame: theTextFrame)
-       textView.text = trackTitle
-       textView.textAlignment = .center
-       view.addSubview(textView)
+        let textView = UILabel(frame: theTextFrame)
+        textView.text = trackTitle
+        textView.textAlignment = .center
+        view.addSubview(textView)
         
-        print(urlPreview)
-        play(urlPreview)
+        //play(urlPreview) uncomment here
     }
     
     func getImage(_ path: String) -> UIImage{
@@ -54,7 +53,6 @@ class TrackDetailedViewController: UIViewController {
         if(path == nil){
             return
         }
-        print("playing \(path!)")
         do {
             let url = URL(string: path!)!
             let playerItem = AVPlayerItem(url: url)
