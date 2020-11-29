@@ -15,7 +15,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         var theData: [String] = [] {
             didSet{
-                trackTableView.reloadData()
+                DispatchQueue.main.async {
+                    self.trackTableView.reloadData()
+                }
             }
         }
     
@@ -32,6 +34,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         struct Track: Decodable {
             let name: String
         }
+    
+    struct APIResultsWrapper: Decodable{
+        let tracks: APIResults
+    }
 
         //let client_id = "4c4b5879f3d74b2fac7b995cca064abd";
         //let client_secret = "027be414fc074154aa5bbe847fe2f354"
@@ -93,7 +99,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 ans = responseString!.components(separatedBy: "\"")[3]
             }
             task.resume()
-            sleep(1)
+//            sleep(1)
             return ans
         }
     
@@ -148,37 +154,20 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
             print(responseString)
             
+            
             do{
-                if let json = responseString.data(using: .utf8){
-                    if let jsonData = try JSONSerialization.jsonObject(with: json, options: .allowFragments) as? APIResults{
-                        var tempTrack:[String] = []
-                        for element in jsonData.items{
-                             tempTrack.append(element.name)
-                             print(element.name)
-                        }
-                        self.theData = tempTrack
-                    }
-                    else{
-                        print("Still bad json")
-                    }
+                let tempData = (try JSONDecoder().decode(APIResultsWrapper.self, from: Data(responseString.utf8))).tracks.items
+                var tempTrack:[String] = []
+                for element in tempData{
+                    tempTrack.append(element.name)
                 }
-            }catch {
-                print("Bad json")
-                print(error.localizedDescription)
-
+                self.theData = tempTrack
             }
-//            do{
-//                let tempData = (try JSONDecoder().decode(APIResults.self, from: Data(responseString.utf8))).items
-//                var tempTrack:[String] = []
-//                for element in tempData{
-//                    tempTrack.append(element.name)
-//                }
-//                self.theData = tempTrack
-//            }
-//            catch{
-//                print("Not valid json")
-//            }
+            catch{
+                print("Not valid json")
+            }
         }
+        
         task.resume()
     }
     
