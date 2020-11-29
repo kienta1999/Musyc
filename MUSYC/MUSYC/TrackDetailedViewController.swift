@@ -7,23 +7,36 @@
 //
 
 import UIKit
+import AVFoundation
 
 class TrackDetailedViewController: UIViewController {
     
     var trackTitle: String!
     var urlImg: String!
+    var urlPreview: String!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        print("here")
+        self.title = trackTitle
         
+        view.backgroundColor = .white
+        
+        let imageRatio = CGFloat(1.5)
         let image = getImage(urlImg)
-        let imageRatio = 1
-        let theTextFrame = CGRect(x: 0, y: image.size.height / CGFloat(imageRatio) + 110, width: view.frame.width, height: 30)
+        let theImageFrame = CGRect(x: view.frame.midX - image.size.width / imageRatio / 2 , y: 90, width: image.size.width / imageRatio, height: image.size.height / imageRatio)
+        let imageView = UIImageView(frame: theImageFrame)
+        imageView.image = image
+        
+        view.addSubview(imageView)
+        
+        
+        let theTextFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
        let textView = UILabel(frame: theTextFrame)
-       textView.text = "Title: " + trackTitle
+       textView.text = trackTitle
        textView.textAlignment = .center
        view.addSubview(textView)
+        
+        play(urlPreview)
     }
     
     func getImage(_ path: String) -> UIImage{
@@ -33,7 +46,22 @@ class TrackDetailedViewController: UIViewController {
 //               return UIImage(named: "img_not_found")!
 //           }
         return UIImage(data: data!)!
-       }
+    }
+    
+    func play(_ path: String) {
+        print("playing \(path)")
+        let url = URL(string: path)!
+        do {
+            let playerItem = AVPlayerItem(url: url)
+
+            var player = try AVPlayer(playerItem:playerItem)
+            player.volume = 1.0
+            player.play()
+        } catch {
+            print("AVAudioPlayer failed")
+        }
+    }
+
     
 
     /*

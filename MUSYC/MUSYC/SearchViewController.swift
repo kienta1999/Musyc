@@ -22,6 +22,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         }
     
     var theImage: [String] = []
+    var thePreviewUrl: [String] = []
     
         struct APIResultsWrapper: Decodable{
             let tracks: APIResults
@@ -39,6 +40,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         struct Track: Decodable {
             let name: String
             let album: Album
+            let preview_url: String!
         }
         struct Album: Decodable{
             let images: [AlbumImage]
@@ -60,6 +62,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
         override func viewDidLoad() {
             super.viewDidLoad()
+            self.title = "Search"
             // Do any additional setup after loading the view.
             access_token = getAccessToken()
             //print(access_token)
@@ -131,6 +134,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
     func fetchTracksForTableiew() {
         theImage = []
+        thePreviewUrl = []
         let url = URL(string: "https://api.spotify.com/v1/search")!
         var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
@@ -174,6 +178,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 for element in tempData{
                     tempTrack.append(element.name)
                     self.theImage.append(element.album.images[0].url)
+                    self.thePreviewUrl.append(element.preview_url)
                 }
                 self.theData = tempTrack
             }
@@ -191,9 +196,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         print(index)
         detailedVC.trackTitle = theData[index]
         detailedVC.urlImg = theImage[index]
-        print(theData[index])
-        print(theImage[index])
-        navigationController?.pushViewController(detailedVC, animated: true)
+        detailedVC.urlPreview = thePreviewUrl[index]
+        self.navigationController?.pushViewController(detailedVC, animated: true)
     }
     
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
