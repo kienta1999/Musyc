@@ -97,7 +97,7 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
             movieTitle.text = title
             movieTitle.textColor = .white
             movieTitle.textAlignment = .center
-            movieTitle.backgroundColor = .gray
+            movieTitle.backgroundColor = UIColor.gray.withAlphaComponent(0.5)
             imageView.addSubview(movieTitle)
         }
         else{
