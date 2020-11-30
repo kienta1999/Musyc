@@ -23,6 +23,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
         var theImage: [String] = []
         var thePreviewUrl: [String?] = []
+        var theArtist: [String] = []
     
         struct APIResultsWrapper: Decodable{
             let tracks: APIResults
@@ -41,12 +42,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let name: String
             let album: Album
             let preview_url: String!
+            let artists: [Artist]
         }
         struct Album: Decodable{
             let images: [AlbumImage]
         }
         struct AlbumImage: Decodable{
             let url: String
+        }
+    
+        struct Artist: Decodable{
+            let name: String
         }
         
         
@@ -135,6 +141,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         func fetchTracksForTableiew() {
             theImage = []
             thePreviewUrl = []
+            theArtist = []
             let url = URL(string: "https://api.spotify.com/v1/search")!
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
@@ -179,6 +186,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         tempTrack.append(element.name)
                         self.theImage.append(element.album.images[0].url)
                         self.thePreviewUrl.append(element.preview_url ?? nil)
+                        self.theArtist.append(element.artists[0].name)
                     }
                     self.theData = tempTrack
                 }
@@ -196,6 +204,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             detailedVC.trackTitle = theData[index]
             detailedVC.urlImg = theImage[index]
             detailedVC.urlPreview = thePreviewUrl[index]
+            detailedVC.artist = theArtist[index]
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }
         

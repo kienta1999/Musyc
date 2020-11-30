@@ -14,7 +14,9 @@ class TrackDetailedViewController: UIViewController {
     var trackTitle: String!
     var urlImg: String!
     var urlPreview: String!
+    var artist: String!
     var player: AVPlayer!
+    
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,11 +33,17 @@ class TrackDetailedViewController: UIViewController {
         view.addSubview(imageView)
         
         
-        let theTextFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
-        let textView = UILabel(frame: theTextFrame)
-        textView.text = trackTitle
-        textView.textAlignment = .center
-        view.addSubview(textView)
+        let theNameFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
+        let nameView = UILabel(frame: theNameFrame)
+        nameView.text = trackTitle
+        nameView.textAlignment = .center
+        view.addSubview(nameView)
+        
+        let theArtistFrame = CGRect(x: 0, y: image.size.height / imageRatio + 140, width: view.frame.width, height: 30)
+        let artistView = UILabel(frame: theArtistFrame)
+        artistView.text = artist
+        artistView.textAlignment = .center
+        view.addSubview(artistView)
         
         //play(urlPreview)
     }
