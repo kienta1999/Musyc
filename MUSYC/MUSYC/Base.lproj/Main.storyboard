@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16087"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -76,21 +77,53 @@
             </objects>
             <point key="canvasLocation" x="2818.4000000000001" y="870.44334975369463"/>
         </scene>
-        <!--Albums-->
+        <!--Album View Controller-->
         <scene sceneID="Gzi-13-h53">
             <objects>
-                <viewController id="x90-ro-Soo" sceneMemberID="viewController">
+                <viewController id="x90-ro-Soo" customClass="AlbumViewController" customModule="MUSYC" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2we-bS-wLR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <searchBar contentMode="redraw" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xHU-Fa-awc">
+                                <rect key="frame" x="0.0" y="88" width="375" height="44"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </searchBar>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="2z1-hR-neu">
+                                <rect key="frame" x="0.0" y="132" width="375" height="597"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="vpQ-cR-ySr">
+                                    <size key="itemSize" width="128" height="128"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" id="Z8p-D9-iox">
+                                        <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="jSA-4m-UFY">
+                                            <rect key="frame" x="0.0" y="0.0" width="128" height="128"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="GC2-fE-U4U"/>
                     </view>
-                    <tabBarItem key="tabBarItem" title="Albums" image="music.note" catalog="system" id="Hzl-Bf-MFD"/>
+                    <navigationItem key="navigationItem" id="dCB-oh-I5N"/>
+                    <connections>
+                        <outlet property="albumCollectionView" destination="2z1-hR-neu" id="lf9-31-1bD"/>
+                        <outlet property="albumQuery" destination="xHU-Fa-awc" id="vhg-e2-oBp"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="N3U-ei-vlE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1071" y="1622"/>
+            <point key="canvasLocation" x="2012" y="1621.92118226601"/>
         </scene>
         <!--Login Page View Controller-->
         <scene sceneID="1ej-8J-cFe">
@@ -321,7 +354,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIb-IU-J1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="2128"/>
+            <point key="canvasLocation" x="3690.4000000000001" y="2127.3399014778324"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="MPg-O8-Qva">
@@ -360,7 +393,7 @@
                     <connections>
                         <segue destination="feB-34-GGm" kind="relationship" relationship="viewControllers" id="2Rg-Is-j8f"/>
                         <segue destination="Iew-xL-q0r" kind="relationship" relationship="viewControllers" id="9ej-ly-v0a"/>
-                        <segue destination="x90-ro-Soo" kind="relationship" relationship="viewControllers" id="HOg-Yo-zxg"/>
+                        <segue destination="yR0-ya-TJI" kind="relationship" relationship="viewControllers" id="HOg-Yo-zxg"/>
                         <segue destination="bYb-Xm-Akb" kind="relationship" relationship="viewControllers" id="DJH-vY-tY2"/>
                     </connections>
                 </tabBarController>
@@ -424,6 +457,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="emv-vr-OWC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1039.2" y="863.79310344827593"/>
+        </scene>
+        <!--Albums-->
+        <scene sceneID="fLz-on-awe">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="yR0-ya-TJI" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Albums" image="music.note" catalog="system" id="Hzl-Bf-MFD"/>
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="EzV-bc-otj">
+                        <rect key="frame" x="0.0" y="44" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="x90-ro-Soo" kind="relationship" relationship="rootViewController" id="GHb-1o-Asj"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="iJh-5s-hCf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1069.5999999999999" y="1621.92118226601"/>
         </scene>
     </scenes>
     <resources>

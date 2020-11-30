@@ -60,7 +60,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         //let client_id = "4c4b5879f3d74b2fac7b995cca064abd";
         //let client_secret = "027be414fc074154aa5bbe847fe2f354"
 
-        var access_token = "not-available";
         
         @IBOutlet weak var trackQuery: UISearchBar!
     
@@ -70,14 +69,17 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             super.viewDidLoad()
             self.title = "Search"
             // Do any additional setup after loading the view.
-            access_token = getAccessToken()
+//            if(UserDefaults.standard.string(forKey: "access_token") == nil){
+//                
+//            }
+            UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
             //print(access_token)
             setupTableView()
             trackQuery.delegate = self
         }
         
         
-        func getAccessToken() -> String{
+        static func getAccessToken() -> String{
             let refresh_token = "AQBcAsJod-8i1B13F9DI1ylAMfcpQykIyXnzjvfdXStdzeANmgYc3e_DbqxI4GqOIQEarRx4ShPKngC3KWtyv_f3NO2macj_J7ph_g0A4wLQ-DOL3ke5t5W4xbvOTmKrhYE";
             let encoded_64_id_secret = "NGM0YjU4NzlmM2Q3NGIyZmFjN2I5OTVjY2EwNjRhYmQ6MDI3YmU0MTRmYzA3NDE1NGFhNWJiZTg0N2ZlMmYzNTQ=";
             var ans = "error"
@@ -152,7 +154,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             print(components.url!)
             var request = URLRequest(url: components.url!)
             request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-            request.setValue("Bearer " + access_token, forHTTPHeaderField: "Authorization")
+            request.setValue("Bearer " + UserDefaults.standard.string(forKey: "access_token")!, forHTTPHeaderField: "Authorization")
             request.httpMethod = "GET"
     //        request.httpBody = Data(query!.utf8)
 
@@ -170,8 +172,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("response = \(response)")
                     //the access token is expired - need to get a new one
                     if(response.statusCode == 401){
-                        self.access_token = self.getAccessToken()
-                        self.fetchTracksForTableiew()
+                        UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
+//                        self.fetchTracksForTableiew()
                     }
                     return
                 }
