@@ -65,6 +65,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
     
         @IBOutlet weak var trackTableView: UITableView!
     
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+    
         override func viewDidLoad() {
             super.viewDidLoad()
             self.title = "Search"

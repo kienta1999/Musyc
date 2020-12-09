@@ -21,6 +21,7 @@
 		7829E502256230E70049E4A0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7829E500256230E70049E4A0 /* Main.storyboard */; };
 		7829E504256230E80049E4A0 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7829E503256230E80049E4A0 /* Assets.xcassets */; };
 		7829E507256230E80049E4A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7829E505256230E80049E4A0 /* LaunchScreen.storyboard */; };
+		7858BF332581265B00E4D00E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7858BF322581265B00E4D00E /* SpotifyiOS.framework */; };
 		AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */; };
 		ACC07CCB25749B0600606BDC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC07CCA25749B0600606BDC /* AlbumViewController.swift */; };
 		ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */; };
@@ -42,6 +43,8 @@
 		7829E503256230E80049E4A0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7829E506256230E80049E4A0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7829E508256230E80049E4A0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7858BF312581128D00E4D00E /* Musyc.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Musyc.h; sourceTree = "<group>"; };
+		7858BF322581265B00E4D00E /* SpotifyiOS.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SpotifyiOS.framework; sourceTree = "<group>"; };
 		7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.debug.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.debug.xcconfig"; sourceTree = "<group>"; };
 		82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.release.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.release.xcconfig"; sourceTree = "<group>"; };
 		AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
@@ -55,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7858BF332581265B00E4D00E /* SpotifyiOS.framework in Frameworks */,
 				65D9446CC7AC687A72D6096C /* Pods_MUSYC.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -125,6 +129,8 @@
 				507DA7742571C52B00212DA7 /* GoogleService-Info.plist */,
 				ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */,
 				ACC07CCA25749B0600606BDC /* AlbumViewController.swift */,
+				7858BF312581128D00E4D00E /* Musyc.h */,
+				7858BF322581265B00E4D00E /* SpotifyiOS.framework */,
 			);
 			path = MUSYC;
 			sourceTree = "<group>";
@@ -338,7 +344,9 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anhle/Desktop/WashU CS/Mobile Game/iOS_Development_Final_Project/MUSYC/MUSYC/Musyc.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 			};
 			name = Debug;
 		};
@@ -391,7 +399,9 @@
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anhle/Desktop/WashU CS/Mobile Game/iOS_Development_Final_Project/MUSYC/MUSYC/Musyc.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_PRECOMPILE_BRIDGING_HEADER = NO;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -403,6 +413,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52H3TQCL25;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MUSYC",
+				);
 				INFOPLIST_FILE = MUSYC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -410,6 +424,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = depauw.MUSYC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anhle/Desktop/WashU CS/Mobile Game/iOS_Development_Final_Project/MUSYC/MUSYC/Musyc.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
@@ -422,6 +437,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 52H3TQCL25;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/MUSYC",
+				);
 				INFOPLIST_FILE = MUSYC/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -429,6 +448,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = depauw.MUSYC;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "/Users/anhle/Desktop/WashU CS/Mobile Game/iOS_Development_Final_Project/MUSYC/MUSYC/Musyc.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};

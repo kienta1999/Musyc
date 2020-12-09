@@ -10,15 +10,80 @@ import UIKit
 import Firebase
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate {
+class AppDelegate:  UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SPTAppRemotePlayerStateDelegate {
+    func appRemoteDidEstablishConnection(_ appRemote: SPTAppRemote) {
+      // Connection was successful, you can begin issuing commands
+      self.appRemote.playerAPI?.delegate = self
+      self.appRemote.playerAPI?.subscribe(toPlayerState: { (result, error) in
+        if let error = error {
+          debugPrint(error.localizedDescription)
+        }
+      })
+    }
+    func appRemote(_ appRemote: SPTAppRemote, didDisconnectWithError error: Error?) {
+      print("disconnected")
+    }
+    func appRemote(_ appRemote: SPTAppRemote, didFailConnectionAttemptWithError error: Error?) {
+      print("failed")
+    }
+    func playerStateDidChange(_ playerState: SPTAppRemotePlayerState) {
+      debugPrint("Track name: %@", playerState.track.name)
+    }
+    
+    
+    lazy var appRemote: SPTAppRemote = {
+      let appRemote = SPTAppRemote(configuration: self.configuration, logLevel: .debug)
+      appRemote.connectionParameters.accessToken = self.accessToken
+      appRemote.delegate = self
+      return appRemote
+    }()
+    
 
-
+    let SpotifyClientID = "4a3149d20c044c09a30c4d105ff54780"
+    let SpotifyRedirectURL = URL(string: "Musyc://returnAfterLogin")!
+    var playURI = ""
+    var accessToken = ""
+    
+    lazy var configuration = SPTConfiguration(
+      clientID: SpotifyClientID,
+      redirectURL: SpotifyRedirectURL
+    )
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         FirebaseApp.configure()
-
+//        auth.redirectURL = URL(string: "Musyc://returnAfterLogin")
+//        auth.sessionUserDefaultsKey = "current session"
+        
         return true
+    }
+    
+    internal func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
+      let parameters = appRemote.authorizationParameters(from: url);
+
+            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+                appRemote.connectionParameters.accessToken = access_token
+                self.accessToken = access_token
+            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+                // Show the error
+            }
+      return true
+    }
+    
+    func connect() {
+      self.appRemote.authorizeAndPlayURI(self.playURI)
+    }
+    
+    func applicationWillResignActive(_ application: UIApplication) {
+      if self.appRemote.isConnected {
+        self.appRemote.disconnect()
+      }
+    }
+    
+    func applicationDidBecomeActive(_ application: UIApplication) {
+      if let _ = self.appRemote.connectionParameters.accessToken {
+        self.appRemote.connect()
+      }
     }
 
     // MARK: UISceneSession Lifecycle
