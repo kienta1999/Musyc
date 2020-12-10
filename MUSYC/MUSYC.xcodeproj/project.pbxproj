@@ -23,6 +23,7 @@
 		7829E507256230E80049E4A0 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7829E505256230E80049E4A0 /* LaunchScreen.storyboard */; };
 		7858BF332581265B00E4D00E /* SpotifyiOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7858BF322581265B00E4D00E /* SpotifyiOS.framework */; };
 		AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */; };
+		AC74CBF325826D1000A0CA51 /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC74CBF225826D1000A0CA51 /* WebViewController.swift */; };
 		ACC07CCB25749B0600606BDC /* AlbumViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACC07CCA25749B0600606BDC /* AlbumViewController.swift */; };
 		ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */; };
 /* End PBXBuildFile section */
@@ -48,6 +49,7 @@
 		7F2AB319C7D9BF1204B20C8A /* Pods-MUSYC.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.debug.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.debug.xcconfig"; sourceTree = "<group>"; };
 		82FEB2C62BCD81B28FBBF239 /* Pods-MUSYC.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MUSYC.release.xcconfig"; path = "Target Support Files/Pods-MUSYC/Pods-MUSYC.release.xcconfig"; sourceTree = "<group>"; };
 		AC3810DD256FF7D100BF8D0B /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
+		AC74CBF225826D1000A0CA51 /* WebViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		ACC07CCA25749B0600606BDC /* AlbumViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumViewController.swift; sourceTree = "<group>"; };
 		ACEA441B25740F8100912E3D /* TrackDetailedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackDetailedViewController.swift; sourceTree = "<group>"; };
 		DC99187DE6B895768A8434F2 /* Pods_MUSYC.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MUSYC.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -131,6 +133,7 @@
 				ACC07CCA25749B0600606BDC /* AlbumViewController.swift */,
 				7858BF312581128D00E4D00E /* Musyc.h */,
 				7858BF322581265B00E4D00E /* SpotifyiOS.framework */,
+				AC74CBF225826D1000A0CA51 /* WebViewController.swift */,
 			);
 			path = MUSYC;
 			sourceTree = "<group>";
@@ -262,6 +265,7 @@
 				50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */,
 				50B6B33A2572DE4B006E8D43 /* others.swift in Sources */,
 				50B6B3322572C22D006E8D43 /* HomeViewController.swift in Sources */,
+				AC74CBF325826D1000A0CA51 /* WebViewController.swift in Sources */,
 				50B6B32E2571DC8B006E8D43 /* SignUpViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

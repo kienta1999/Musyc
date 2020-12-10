@@ -27,6 +27,7 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
             let name: String
             let images: [AlbumImage]
             let artists: [Artist]
+            let uri: String
         }
         struct AlbumImage: Decodable{
             let url: String
@@ -40,6 +41,8 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
     var theImage: [String] = []
     var theArtist: [String] = []
     var images: [UIImage] = []
+    var theUri: [String] = []
+    
     let numRow = 2
     var numCol = 10
     
@@ -106,6 +109,23 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let index = indexPath.section * numRow + indexPath.row
+        if(index >= theData.count){
+            return
+        }
+        print(TrackDetailedViewController.uriToUrl(theUri[index]))
+        let webVC = WebViewController()
+        let searchURL = TrackDetailedViewController.uriToUrl(theUri[index])
+        let url = URL(string: searchURL)!
+        let spotifyURLRequest = URLRequest(url: url)
+        
+        webVC.url = spotifyURLRequest
+        webVC.name = theData[index]
+        
+        navigationController?.pushViewController(webVC, animated: true)
+    }
+    
     func setupCollectionView(){
         albumCollectionView.dataSource = self
         albumCollectionView.delegate = self
@@ -116,6 +136,7 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
             theImage = []
             theArtist = []
             images = []
+            theUri = []
             let url = URL(string: "https://api.spotify.com/v1/search")!
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
@@ -160,6 +181,7 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
                         tempAlbumName.append(element.name)
                         self.theImage.append(element.images[0].url)
                         self.theArtist.append(element.artists[0].name)
+                        self.theUri.append(element.uri)
                     }
                     self.theData = tempAlbumName
                     

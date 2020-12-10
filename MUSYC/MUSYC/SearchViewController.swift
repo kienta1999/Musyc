@@ -24,6 +24,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         var theImage: [String] = []
         var thePreviewUrl: [String?] = []
         var theArtist: [String] = []
+        var theUri: [String] = []
     
         struct APIResultsWrapper: Decodable{
             let tracks: APIResults
@@ -43,6 +44,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             let album: Album
             let preview_url: String!
             let artists: [Artist]
+            let uri: String
         }
         struct Album: Decodable{
             let images: [AlbumImage]
@@ -146,6 +148,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             theImage = []
             thePreviewUrl = []
             theArtist = []
+            theUri = []
             let url = URL(string: "https://api.spotify.com/v1/search")!
             var components = URLComponents(url: url, resolvingAgainstBaseURL: false)!
 
@@ -191,6 +194,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                         self.theImage.append(element.album.images[0].url)
                         self.thePreviewUrl.append(element.preview_url ?? nil)
                         self.theArtist.append(element.artists[0].name)
+                        self.theUri.append(element.uri)
                     }
                     self.theData = tempTrack
                 }
@@ -209,6 +213,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             detailedVC.urlImg = theImage[index]
             detailedVC.urlPreview = thePreviewUrl[index]
             detailedVC.artist = theArtist[index]
+            detailedVC.uri = theUri[index]
+            
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }
         

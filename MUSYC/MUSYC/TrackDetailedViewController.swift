@@ -16,6 +16,7 @@ class TrackDetailedViewController: UIViewController {
     var urlPreview: String!
     var artist: String!
     var player: AVPlayer!
+    var uri: String!
     
 
     override func viewDidLoad() {
@@ -45,7 +46,40 @@ class TrackDetailedViewController: UIViewController {
         artistView.textAlignment = .center
         view.addSubview(artistView)
         
+        let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 170, width: view.frame.width, height: 30)
+        let streamBtn = UIButton(frame: streamBtnFrame)
+        streamBtn.backgroundColor = UIColor(named: "buttonBackground")
+        streamBtn.setTitle("Stream", for: .normal)
+        streamBtn.setTitleColor(.systemTeal, for: .normal)
+        streamBtn.layer.borderWidth = 2
+        streamBtn.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
+        streamBtn.addTarget(self, action: #selector(streamBtnClicked), for: .touchUpInside)
+        view.addSubview(streamBtn)
+        
         //play(urlPreview)
+    }
+    
+        @objc func streamBtnClicked(){
+            print(TrackDetailedViewController.uriToUrl(uri))
+            let webVC = WebViewController()
+            let searchURL = TrackDetailedViewController.uriToUrl(uri)
+            let url = URL(string: searchURL)!
+            let spotifyURLRequest = URLRequest(url: url)
+            
+            webVC.url = spotifyURLRequest
+            webVC.name = trackTitle
+            
+            navigationController?.pushViewController(webVC, animated: true)
+        }
+    
+    static func uriToUrl(_ uri: String!) -> String{
+        if uri != nil {
+            return "https://open.spotify.com" + uri.suffix(uri.count - 7).replacingOccurrences(of: ":", with: "/")
+        }
+        else {
+            return "https://open.spotify.com/track/0cCm1PbOd6nqAPDdA3PRfs"
+        }
+            
     }
     
     func getImage(_ path: String) -> UIImage{
