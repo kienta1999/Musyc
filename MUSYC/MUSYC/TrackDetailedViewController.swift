@@ -51,7 +51,7 @@ class TrackDetailedViewController: UIViewController {
         streamBtn.backgroundColor = UIColor(named: "buttonBackground")
         streamBtn.setTitle("Stream", for: .normal)
         streamBtn.setTitleColor(.systemTeal, for: .normal)
-        streamBtn.layer.borderWidth = 2
+        streamBtn.setTitleColor(.green, for: .normal)
         streamBtn.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
         streamBtn.addTarget(self, action: #selector(streamBtnClicked), for: .touchUpInside)
         view.addSubview(streamBtn)
