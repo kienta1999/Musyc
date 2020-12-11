@@ -23,9 +23,9 @@ class TrackDetailedViewController: UIViewController {
         super.viewDidLoad()
         self.title = trackTitle
         
-        view.backgroundColor = .white
+        view.backgroundColor = .black
         
-        let imageRatio = CGFloat(1.5)
+        let imageRatio = CGFloat(3)
         let image = getImage(urlImg)
         let theImageFrame = CGRect(x: view.frame.midX - image.size.width / imageRatio / 2 , y: 90, width: image.size.width / imageRatio, height: image.size.height / imageRatio)
         let imageView = UIImageView(frame: theImageFrame)
@@ -33,20 +33,23 @@ class TrackDetailedViewController: UIViewController {
         
         view.addSubview(imageView)
         
+        let distanceBtwElement = CGFloat(30)
         
         let theNameFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
         let nameView = UILabel(frame: theNameFrame)
         nameView.text = trackTitle
         nameView.textAlignment = .center
+        nameView.textColor = .white
         view.addSubview(nameView)
         
-        let theArtistFrame = CGRect(x: 0, y: image.size.height / imageRatio + 140, width: view.frame.width, height: 30)
+        let theArtistFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110 + distanceBtwElement, width: view.frame.width, height: 30)
         let artistView = UILabel(frame: theArtistFrame)
         artistView.text = artist
         artistView.textAlignment = .center
+        artistView.textColor = .white
         view.addSubview(artistView)
         
-        let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 170, width: view.frame.width, height: 30)
+        let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110 + distanceBtwElement * 2, width: view.frame.width, height: 30)
         let streamBtn = UIButton(frame: streamBtnFrame)
         streamBtn.backgroundColor = UIColor(named: "buttonBackground")
         streamBtn.setTitle("Stream", for: .normal)
@@ -55,6 +58,18 @@ class TrackDetailedViewController: UIViewController {
         streamBtn.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
         streamBtn.addTarget(self, action: #selector(streamBtnClicked), for: .touchUpInside)
         view.addSubview(streamBtn)
+        
+        let heightLyricFrame = image.size.height / imageRatio + 110 + distanceBtwElement * 3
+        let lyricFrame = CGRect(x: 0, y: heightLyricFrame, width: view.frame.width, height: view.frame.height - heightLyricFrame)
+        let lyricView = UITextView(frame: lyricFrame)
+        lyricView.text = "We don't talk anymore, we don't talk anymore\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore\r\nWhat was all of it for?\r\nOh, we don't talk anymore, like we used to do\r\n\r\nI just heard you found the one you've been looking\r\nYou've been looking for\r\nI wish I would have known that wasn't me\r\n'Cause even after all this time I still wonder\r\nWhy I can't move on\r\nJust the way you did so easily\r\n\r\nDon't wanna know\r\nWhat kind of dress you're wearing tonight\r\nIf he's holding onto you so tight\r\nThe way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore, we don't talk anymore\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore\r\nWhat was all of it for?\r\nOh, we don't talk anymore, like we used to do\r\n\r\nI just hope you're lying next to somebody\r\nWho knows how to love you like me\r\nThere must be a good reason that you're gone\r\nEvery now and then I think you\r\nMight want me to come show up at your door\r\nBut I'm just too afraid that I'll be wrong\r\n\r\nDon't wanna know\r\nIf you're looking into her eyes\r\nIf she's holding onto you so tight the way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore (We don't, we don't)\r\nWe don't talk anymore (We don't, we don't)\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore (We don't, we don't)\r\nWhat was all of it for? (We don't, we don't)\r\nOh, we don't talk anymore, like we used to do\r\n\r\nLike we used to do\r\n\r\nDon't wanna know\r\nWhat kind of dress you're wearing tonight\r\nIf he's giving it to you just right\r\nThe way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore (We don't, we don't)\r\nWe don't talk anymore (We don't, we don't)\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore (We don't, we don't)\r\nWhat was all of it for? (We don't, we don't)\r\nOh, we don't talk anymore, like we used to do\r\n\r\nWe don't talk anymore, oh, oh\r\n(What kind of dress you're wearing tonight)\r\n(If he's holding onto you so tight)\r\nThe way I did before\r\nWe don't talk anymore, oh, woah\r\n(Should've known your love was a game)\r\n(Now I can't get you out of my brain)\r\nOoh, it's such a shame\r\nThat we don't talk anymore"
+        lyricView.textColor = .white
+        lyricView.font = UIFont.boldSystemFont(ofSize: 16)
+        lyricView.backgroundColor = .clear
+        lyricView.isEditable = false
+        lyricView.isScrollEnabled = true
+        view.addSubview(lyricView)
+        
         
         //play(urlPreview)
     }

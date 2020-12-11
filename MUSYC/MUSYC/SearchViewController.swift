@@ -134,7 +134,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-            myCell.textLabel!.text = theData[indexPath.row]
+            myCell.textLabel!.text = theData[indexPath.row] + " (" + theArtist[indexPath.row] + ")"
             return myCell
         }
     
