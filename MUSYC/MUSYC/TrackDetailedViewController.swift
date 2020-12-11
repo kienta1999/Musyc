@@ -62,7 +62,7 @@ class TrackDetailedViewController: UIViewController {
         let heightLyricFrame = image.size.height / imageRatio + 110 + distanceBtwElement * 3
         let lyricFrame = CGRect(x: 0, y: heightLyricFrame, width: view.frame.width, height: view.frame.height - heightLyricFrame)
         let lyricView = UITextView(frame: lyricFrame)
-        lyricView.text = "We don't talk anymore, we don't talk anymore\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore\r\nWhat was all of it for?\r\nOh, we don't talk anymore, like we used to do\r\n\r\nI just heard you found the one you've been looking\r\nYou've been looking for\r\nI wish I would have known that wasn't me\r\n'Cause even after all this time I still wonder\r\nWhy I can't move on\r\nJust the way you did so easily\r\n\r\nDon't wanna know\r\nWhat kind of dress you're wearing tonight\r\nIf he's holding onto you so tight\r\nThe way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore, we don't talk anymore\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore\r\nWhat was all of it for?\r\nOh, we don't talk anymore, like we used to do\r\n\r\nI just hope you're lying next to somebody\r\nWho knows how to love you like me\r\nThere must be a good reason that you're gone\r\nEvery now and then I think you\r\nMight want me to come show up at your door\r\nBut I'm just too afraid that I'll be wrong\r\n\r\nDon't wanna know\r\nIf you're looking into her eyes\r\nIf she's holding onto you so tight the way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore (We don't, we don't)\r\nWe don't talk anymore (We don't, we don't)\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore (We don't, we don't)\r\nWhat was all of it for? (We don't, we don't)\r\nOh, we don't talk anymore, like we used to do\r\n\r\nLike we used to do\r\n\r\nDon't wanna know\r\nWhat kind of dress you're wearing tonight\r\nIf he's giving it to you just right\r\nThe way I did before\r\nI overdosed\r\nShould've known your love was a game\r\nNow I can't get you out of my brain\r\nOh, it's such a shame\r\n\r\nThat we don't talk anymore (We don't, we don't)\r\nWe don't talk anymore (We don't, we don't)\r\nWe don't talk anymore, like we used to do\r\nWe don't love anymore (We don't, we don't)\r\nWhat was all of it for? (We don't, we don't)\r\nOh, we don't talk anymore, like we used to do\r\n\r\nWe don't talk anymore, oh, oh\r\n(What kind of dress you're wearing tonight)\r\n(If he's holding onto you so tight)\r\nThe way I did before\r\nWe don't talk anymore, oh, woah\r\n(Should've known your love was a game)\r\n(Now I can't get you out of my brain)\r\nOoh, it's such a shame\r\nThat we don't talk anymore"
+        lyricView.text = getLyric(trackTitle, artist)
         lyricView.textColor = .white
         lyricView.font = UIFont.boldSystemFont(ofSize: 16)
         lyricView.backgroundColor = .clear
@@ -70,7 +70,7 @@ class TrackDetailedViewController: UIViewController {
         lyricView.isScrollEnabled = true
         view.addSubview(lyricView)
         
-        
+        print(getLyric(trackTitle, artist))
         //play(urlPreview)
     }
     
@@ -104,6 +104,67 @@ class TrackDetailedViewController: UIViewController {
 //               return UIImage(named: "img_not_found")!
 //           }
         return UIImage(data: data!)!
+    }
+    
+    struct APIResultsSearch: Decodable {
+        let result: [TrackInfo]
+    }
+    struct TrackInfo:Decodable {
+        let haslyrics: Bool
+        let api_lyrics: String
+    }
+    
+    struct APIResultsLyric: Decodable {
+        let result: lyricsInfor
+    }
+    struct lyricsInfor:Decodable {
+        let lyrics: String
+    }
+    
+    func getLyric(_ track: String, _ artist: String) -> String {
+        let apiKeyHappi = "f5354cE0MKiNRwRBV1sE5SlRL0FvzkSA0VtdcqO5pG9UfTw825eulg4h"
+        let scheme = "https"
+        let host = "api.happi.dev"
+        let path = "/v1/music"
+        let queryItem1 = URLQueryItem(name: "apikey", value: apiKeyHappi)
+        let queryItem2 = URLQueryItem(name: "q", value: track + " " + artist)
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = scheme
+        urlComponents.host = host
+        urlComponents.path = path
+        urlComponents.queryItems = [queryItem1, queryItem2]
+        
+        var api_lyrics: String?
+        if let url = urlComponents.url{
+            print(url)
+            do{
+                let data = try Data(contentsOf: url)
+                let tempData = try JSONDecoder().decode(APIResultsSearch.self, from:data)
+                if(tempData.result.count > 0 && tempData.result[0].haslyrics){
+                    api_lyrics = tempData.result[0].api_lyrics
+                }
+//                totalPageNum = tempData.total_pages
+//                theData = tempData.results
+            }
+            catch{
+                print("Data not found")
+            }
+        }
+        var lyrics_found = ""
+        if let api_lyrics_unwrap = api_lyrics {
+            let url_lyrics = api_lyrics_unwrap + "?apikey=" + apiKeyHappi
+            do{
+                let data = try Data(contentsOf: URL(string: url_lyrics)!)
+                let tempData = try JSONDecoder().decode(APIResultsLyric.self, from:data)
+                lyrics_found = tempData.result.lyrics
+            }
+            catch{
+                print("Data not found")
+            }
+        }
+
+        return lyrics_found
     }
     
     func play(_ path: String?) {
