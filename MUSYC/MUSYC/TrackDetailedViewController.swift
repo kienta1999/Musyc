@@ -141,11 +141,12 @@ class TrackDetailedViewController: UIViewController {
             do{
                 let data = try Data(contentsOf: url)
                 let tempData = try JSONDecoder().decode(APIResultsSearch.self, from:data)
-                if(tempData.result.count > 0 && tempData.result[0].haslyrics){
-                    api_lyrics = tempData.result[0].api_lyrics
+                for i in 0..<tempData.result.count {
+                    if(tempData.result[i].haslyrics){
+                        api_lyrics = tempData.result[i].api_lyrics
+                        break
+                    }
                 }
-//                totalPageNum = tempData.total_pages
-//                theData = tempData.results
             }
             catch{
                 print("Data not found")
