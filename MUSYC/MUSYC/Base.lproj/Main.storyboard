@@ -42,6 +42,7 @@
                                 <rect key="frame" x="0.0" y="129" width="375" height="600"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <color key="sectionIndexBackgroundColor" cocoaTouchSystemColor="darkTextColor"/>
                             </tableView>
                             <searchBar contentMode="redraw" fixedFrame="YES" text="" translatesAutoresizingMaskIntoConstraints="NO" id="2mD-N5-k4v">
                                 <rect key="frame" x="0.0" y="85" width="375" height="44"/>
@@ -288,7 +289,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CO-jJ-u3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2748" y="2801"/>
+            <point key="canvasLocation" x="2428" y="3287"/>
         </scene>
         <!--Sign In View Controller-->
         <scene sceneID="Fgm-jm-oNB">
@@ -360,7 +361,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iIb-IU-J1X" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3690.4000000000001" y="2127.3399014778324"/>
+            <point key="canvasLocation" x="1487" y="3287"/>
         </scene>
         <!--Home View Controller-->
         <scene sceneID="MPg-O8-Qva">
@@ -384,7 +385,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QI4-vv-ak3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3567.1999999999998" y="2445.8128078817736"/>
+            <point key="canvasLocation" x="3481" y="3287"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="f7r-re-g9T">

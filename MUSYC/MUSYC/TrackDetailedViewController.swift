@@ -23,7 +23,7 @@ class TrackDetailedViewController: UIViewController {
         super.viewDidLoad()
         self.title = trackTitle
         
-        view.backgroundColor = .black
+        view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         
         let imageRatio = CGFloat(3)
         let image = getImage(urlImg)
@@ -70,7 +70,7 @@ class TrackDetailedViewController: UIViewController {
         lyricView.isScrollEnabled = true
         view.addSubview(lyricView)
         
-        print(getLyric(trackTitle, artist))
+//        print(getLyric(trackTitle, artist))
         //play(urlPreview)
     }
     

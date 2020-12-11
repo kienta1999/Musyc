@@ -52,6 +52,7 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
     
     
     override func viewDidLoad() {
+        albumCollectionView.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         super.viewDidLoad()
         albumQuery.delegate = self
         self.title = "Album"
