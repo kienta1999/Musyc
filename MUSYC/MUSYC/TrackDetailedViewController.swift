@@ -23,9 +23,9 @@ class TrackDetailedViewController: UIViewController {
         super.viewDidLoad()
         self.title = trackTitle
         
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         
-        let imageRatio = CGFloat(1.5)
+        let imageRatio = CGFloat(3)
         let image = getImage(urlImg)
         let theImageFrame = CGRect(x: view.frame.midX - image.size.width / imageRatio / 2 , y: 90, width: image.size.width / imageRatio, height: image.size.height / imageRatio)
         let imageView = UIImageView(frame: theImageFrame)
@@ -33,20 +33,23 @@ class TrackDetailedViewController: UIViewController {
         
         view.addSubview(imageView)
         
+        let distanceBtwElement = CGFloat(30)
         
         let theNameFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110, width: view.frame.width, height: 30)
         let nameView = UILabel(frame: theNameFrame)
         nameView.text = trackTitle
         nameView.textAlignment = .center
+        nameView.textColor = .white
         view.addSubview(nameView)
         
-        let theArtistFrame = CGRect(x: 0, y: image.size.height / imageRatio + 140, width: view.frame.width, height: 30)
+        let theArtistFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110 + distanceBtwElement, width: view.frame.width, height: 30)
         let artistView = UILabel(frame: theArtistFrame)
         artistView.text = artist
         artistView.textAlignment = .center
+        artistView.textColor = .white
         view.addSubview(artistView)
         
-        let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 170, width: view.frame.width, height: 30)
+        let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110 + distanceBtwElement * 2, width: view.frame.width, height: 30)
         let streamBtn = UIButton(frame: streamBtnFrame)
         streamBtn.backgroundColor = UIColor(named: "buttonBackground")
         streamBtn.setTitle("Stream", for: .normal)
@@ -56,6 +59,18 @@ class TrackDetailedViewController: UIViewController {
         streamBtn.addTarget(self, action: #selector(streamBtnClicked), for: .touchUpInside)
         view.addSubview(streamBtn)
         
+        let heightLyricFrame = image.size.height / imageRatio + 110 + distanceBtwElement * 3
+        let lyricFrame = CGRect(x: 0, y: heightLyricFrame, width: view.frame.width, height: view.frame.height - heightLyricFrame)
+        let lyricView = UITextView(frame: lyricFrame)
+        lyricView.text = getLyric(trackTitle, artist)
+        lyricView.textColor = .white
+        lyricView.font = UIFont.boldSystemFont(ofSize: 16)
+        lyricView.backgroundColor = .clear
+        lyricView.isEditable = false
+        lyricView.isScrollEnabled = true
+        view.addSubview(lyricView)
+        
+//        print(getLyric(trackTitle, artist))
         //play(urlPreview)
     }
     
@@ -89,6 +104,68 @@ class TrackDetailedViewController: UIViewController {
 //               return UIImage(named: "img_not_found")!
 //           }
         return UIImage(data: data!)!
+    }
+    
+    struct APIResultsSearch: Decodable {
+        let result: [TrackInfo]
+    }
+    struct TrackInfo:Decodable {
+        let haslyrics: Bool
+        let api_lyrics: String
+    }
+    
+    struct APIResultsLyric: Decodable {
+        let result: lyricsInfor
+    }
+    struct lyricsInfor:Decodable {
+        let lyrics: String
+    }
+    
+    func getLyric(_ track: String, _ artist: String) -> String {
+        let apiKeyHappi = "f5354cE0MKiNRwRBV1sE5SlRL0FvzkSA0VtdcqO5pG9UfTw825eulg4h"
+        let scheme = "https"
+        let host = "api.happi.dev"
+        let path = "/v1/music"
+        let queryItem1 = URLQueryItem(name: "apikey", value: apiKeyHappi)
+        let queryItem2 = URLQueryItem(name: "q", value: track + " " + artist)
+        
+        var urlComponents = URLComponents()
+        urlComponents.scheme = scheme
+        urlComponents.host = host
+        urlComponents.path = path
+        urlComponents.queryItems = [queryItem1, queryItem2]
+        
+        var api_lyrics: String?
+        if let url = urlComponents.url{
+            print(url)
+            do{
+                let data = try Data(contentsOf: url)
+                let tempData = try JSONDecoder().decode(APIResultsSearch.self, from:data)
+                for i in 0..<tempData.result.count {
+                    if(tempData.result[i].haslyrics){
+                        api_lyrics = tempData.result[i].api_lyrics
+                        break
+                    }
+                }
+            }
+            catch{
+                print("Data not found")
+            }
+        }
+        var lyrics_found = ""
+        if let api_lyrics_unwrap = api_lyrics {
+            let url_lyrics = api_lyrics_unwrap + "?apikey=" + apiKeyHappi
+            do{
+                let data = try Data(contentsOf: URL(string: url_lyrics)!)
+                let tempData = try JSONDecoder().decode(APIResultsLyric.self, from:data)
+                lyrics_found = tempData.result.lyrics
+            }
+            catch{
+                print("Data not found")
+            }
+        }
+
+        return lyrics_found
     }
     
     func play(_ path: String?) {

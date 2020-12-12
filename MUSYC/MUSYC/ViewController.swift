@@ -45,6 +45,7 @@ class ViewController: UIViewController{
     //        var urlSource: Int
         }
     
+    var numAppear = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,6 +67,28 @@ class ViewController: UIViewController{
 //            MusicPlayer.chooseMusic(url: path!)
 
             MusicPlayer.Play()
+        }
+    }
+    
+    
+    @IBAction func loginClicked(_ sender: Any) {
+        let webVC = WebViewController()
+        let url = URL(string: "https://accounts.spotify.com/")!
+        let spotifyURLRequest = URLRequest(url: url)
+        
+        webVC.url = spotifyURLRequest
+        webVC.name = "Login"
+        
+        navigationController?.pushViewController(webVC, animated: true)
+    }
+    override func viewDidAppear(_ animated: Bool) {
+        numAppear += 1
+        print(numAppear)
+        if(numAppear == 2){
+            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
+
+            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! SearchViewController
+            self.present(nextViewController, animated:true, completion:nil)
         }
     }
     

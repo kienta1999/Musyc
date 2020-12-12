@@ -70,6 +70,7 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
         override func viewDidLoad() {
+            trackTableView.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
             super.viewDidLoad()
             self.title = "Search"
             // Do any additional setup after loading the view.
@@ -134,7 +135,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
             let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-            myCell.textLabel!.text = theData[indexPath.row]
+            myCell.textLabel!.text = theData[indexPath.row] + " (" + theArtist[indexPath.row] + ")"
+            myCell.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
+            myCell.textLabel!.textColor = .white
             return myCell
         }
     
