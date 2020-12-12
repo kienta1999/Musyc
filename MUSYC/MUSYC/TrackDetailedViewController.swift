@@ -62,7 +62,9 @@ class TrackDetailedViewController: UIViewController {
         let heightLyricFrame = image.size.height / imageRatio + 110 + distanceBtwElement * 3
         let lyricFrame = CGRect(x: 0, y: heightLyricFrame, width: view.frame.width, height: view.frame.height - heightLyricFrame)
         let lyricView = UITextView(frame: lyricFrame)
-        lyricView.text = getLyric(trackTitle, artist)
+        DispatchQueue.main.async{
+            lyricView.text = self.getLyric(self.trackTitle, self.artist)
+        }
         lyricView.textColor = .white
         lyricView.font = UIFont.boldSystemFont(ofSize: 16)
         lyricView.backgroundColor = .clear
