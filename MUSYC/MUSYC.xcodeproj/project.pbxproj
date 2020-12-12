@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2E3DDA402584B4B2006848AD /* MusicDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DDA3E2584B4AF006848AD /* MusicDownload.swift */; };
+		2E3DDA412584B4B2006848AD /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DDA3F2584B4B2006848AD /* MusicPlayer.swift */; };
 		507DA7752571C52B00212DA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507DA7742571C52B00212DA7 /* GoogleService-Info.plist */; };
 		50B6B32E2571DC8B006E8D43 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */; };
 		50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */; };
@@ -29,6 +31,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2E3DDA3E2584B4AF006848AD /* MusicDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicDownload.swift; sourceTree = "<group>"; };
+		2E3DDA3F2584B4B2006848AD /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		507DA7742571C52B00212DA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -124,6 +128,8 @@
 				7829E4FC256230E70049E4A0 /* SceneDelegate.swift */,
 				7829E4FE256230E70049E4A0 /* ViewController.swift */,
 				7829E500256230E70049E4A0 /* Main.storyboard */,
+				2E3DDA3E2584B4AF006848AD /* MusicDownload.swift */,
+				2E3DDA3F2584B4B2006848AD /* MusicPlayer.swift */,
 				7829E503256230E80049E4A0 /* Assets.xcassets */,
 				7829E505256230E80049E4A0 /* LaunchScreen.storyboard */,
 				7829E508256230E80049E4A0 /* Info.plist */,
@@ -259,8 +265,10 @@
 				7829E4FB256230E70049E4A0 /* AppDelegate.swift in Sources */,
 				50B6B33C2572FFDD006E8D43 /* invariable.swift in Sources */,
 				50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */,
+				2E3DDA402584B4B2006848AD /* MusicDownload.swift in Sources */,
 				ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */,
 				AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */,
+				2E3DDA412584B4B2006848AD /* MusicPlayer.swift in Sources */,
 				7829E4FD256230E70049E4A0 /* SceneDelegate.swift in Sources */,
 				50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */,
 				50B6B33A2572DE4B006E8D43 /* others.swift in Sources */,
