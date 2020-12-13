@@ -262,14 +262,6 @@
                                 <rect key="frame" x="67" y="232" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YFZ-hs-X5h">
-                                <rect key="frame" x="151" y="690" width="72" height="36"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="Skip"/>
-                                <connections>
-                                    <segue destination="ILn-1U-ARi" kind="modal" modalPresentationStyle="fullScreen" id="e8y-Hy-XbF"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -470,7 +462,7 @@
                         <outlet property="errorLabel" destination="vLl-jW-Sl7" id="BAk-TR-CK5"/>
                         <outlet property="firstNameTextField" destination="M4f-Lb-FcV" id="UzF-Ak-mjo"/>
                         <outlet property="lastNameTextField" destination="2A3-Hc-j1g" id="4CE-aO-Xds"/>
-                        <segue destination="ILn-1U-ARi" kind="modal" modalPresentationStyle="fullScreen" id="LqQ-qa-LnZ"/>
+                        <segue destination="ILn-1U-ARi" kind="modal" identifier="SignUpSegue" modalPresentationStyle="fullScreen" id="LqQ-qa-LnZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="5CO-jJ-u3q" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
