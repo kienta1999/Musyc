@@ -32,6 +32,9 @@ class CoverViewController: UIViewController {
     
         let firebaseAuth = Auth.auth()
         do {
+            if (UserDefaults.standard.bool(forKey: "loggedIn") != Optional.none) {
+                UserDefaults.standard.set(false, forKey: "loggedIn")
+            }
           try firebaseAuth.signOut()
          
           self.performSegue(withIdentifier: "notLoginSegue", sender: nil)

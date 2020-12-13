@@ -27,6 +27,11 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var favouriteTrackTable: UITableView!
     
+    //add a check so if user not logged in, jump to log in page
+//    if (UserDefaults.standard.bool(forKey: "loggedIn") != Optional.none) {
+//        UserDefaults.standard.set(false, forKey: "loggedIn")
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)

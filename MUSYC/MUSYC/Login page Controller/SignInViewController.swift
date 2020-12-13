@@ -52,6 +52,7 @@ class SignInViewController: UIViewController {
                 self.errorLabel.alpha = 1
             }
             else{
+                UserDefaults.standard.set(true, forKey: "loggedIn")
                 self.performSegue(withIdentifier: "LoginSegue", sender: nil)
 //                let HomeViewController = self.storyboard?.instantiateViewController(identifier: invariable.Storyboard.HomeViewController) as? HomeViewController
 //

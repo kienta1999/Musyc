@@ -89,7 +89,7 @@ class SignUpViewController: UIViewController {
                     self.errordisp("Incorrectly to create the user.")
                 }
                 else{
-                    
+                    UserDefaults.standard.set(true, forKey: "loggedIn")
                     // create user corrrctly
                     let db = Firestore.firestore()
                     db.collection("users").addDocument(data: ["firstname": firstName, "lastname": lastName, "uid":result!.user.uid]) { (error) in

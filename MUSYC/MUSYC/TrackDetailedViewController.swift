@@ -93,6 +93,17 @@ class TrackDetailedViewController: UIViewController {
     
     @objc func favBtnClicked() {
         
+        if (UserDefaults.standard.bool(forKey: "loggedIn") == Optional.none || !UserDefaults.standard.bool(forKey: "loggedIn")) {
+            UserDefaults.standard.set(false, forKey: "loggedIn")
+            
+            let alert = UIAlertController(title: "Please Login", message: "You have to log in so you can add this song to your Favorite List", preferredStyle: UIAlertController.Style.alert)
+            alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+            self.present(alert, animated: true, completion: nil)
+            //jump to login page
+            
+            return;
+        }
+        
         if UserDefaults.standard.array(forKey: self.keyFavTrack) == nil {
             UserDefaults.standard.set([], forKey: self.keyFavTrack)
         }
