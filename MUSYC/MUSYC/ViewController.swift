@@ -17,57 +17,11 @@ class ViewController: UIViewController{
 //    var player: SPTAudioStreamingController?
 //    var loginUrl: URL?
 //    var myplaylists = [SPTPartialPlaylist]()
-    struct MusicInfo: Codable{
-            var data: [Song]
-    //        var url: String
-            var code: Int
-        }
-        
-    struct Song : Codable{
-    //        var id: Double
-            var url: String
-    //        var br: Double
-    //        var size: Double
-    //        var md5: String
-    //        var code:Int
-    //        var expi: Int
-    //        var type: Int
-    //        var gain: Int
-    //        var fee: Int
-    //        var uf:String
-    //        var payed: Int
-    //        var flag: Int
-    //        var canExtend: Bool
-    //        var freeTrialInfo: String
-    //        var level: String
-    //        var encodeType: String
-    //        var freeTrialPrivilege: String
-    //        var urlSource: Int
-        }
     
     var numAppear = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        
-        
-        let url = URL(string:"http://ec2-13-250-43-149.ap-southeast-1.compute.amazonaws.com:3000/song/url?id=462791935&br=999000")
-        let data = try! Data(contentsOf: url!)
-        let theMusics = try! JSONDecoder().decode(MusicInfo.self, from: data)
-//        var music = NSURL(fileURLWithPath: theMusics.data[0].url)
-//        player = AVAudioPlayer(contentsOfURL: music, error: nil)
-//        player.prepareToPlay()
-        
-        
-        let musicUrl = URL(string:theMusics.data[0].url)
-//        let url = URL(string: "http://www.filedownloader.com/mydemofile.pdf")
-        MusicDownload.loadFileAsync(url: musicUrl!) { (path, error) in
-            print("Music File downloaded to : \(path!)")
-//            MusicPlayer.chooseMusic(url: path!)
-
-            MusicPlayer.Play()
-        }
     }
     
     

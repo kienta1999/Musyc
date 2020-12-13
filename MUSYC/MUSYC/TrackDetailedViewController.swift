@@ -17,6 +17,7 @@ class TrackDetailedViewController: UIViewController {
     var artist: String!
     var player: AVPlayer!
     var uri: String!
+    var downloadable = false
     
 
     override func viewDidLoad() {
@@ -77,16 +78,22 @@ class TrackDetailedViewController: UIViewController {
     }
     
         @objc func streamBtnClicked(){
-            print(TrackDetailedViewController.uriToUrl(uri))
-            let webVC = WebViewController()
-            let searchURL = TrackDetailedViewController.uriToUrl(uri)
-            let url = URL(string: searchURL)!
-            let spotifyURLRequest = URLRequest(url: url)
-            
-            webVC.url = spotifyURLRequest
-            webVC.name = trackTitle
-            
-            navigationController?.pushViewController(webVC, animated: true)
+            if(downloadable){
+                MusicDownload.loadFileAsync(url: URL(string: uri)!) { (path, error) in
+                            print("Music File downloaded to : \(path!)")
+                }
+            } else{
+                print(TrackDetailedViewController.uriToUrl(uri))
+                let webVC = WebViewController()
+                let searchURL = TrackDetailedViewController.uriToUrl(uri)
+                let url = URL(string: searchURL)!
+                let spotifyURLRequest = URLRequest(url: url)
+                
+                webVC.url = spotifyURLRequest
+                webVC.name = trackTitle
+                
+                navigationController?.pushViewController(webVC, animated: true)
+            }
         }
     
     static func uriToUrl(_ uri: String!) -> String{
