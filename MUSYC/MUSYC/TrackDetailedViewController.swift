@@ -17,7 +17,14 @@ class TrackDetailedViewController: UIViewController {
     var artist: String!
     var player: AVPlayer!
     var uri: String!
+    var image: UIImage!
     var downloadable = false
+    
+    let keyFavTrack:String = "keyFavTrack"
+    let keyArtist = "keyArtist"
+    let keyImage: String = "keyImage"
+    let keyUri = "keyUri"
+//    let key
     
 
     override func viewDidLoad() {
@@ -27,7 +34,7 @@ class TrackDetailedViewController: UIViewController {
         view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         
         let imageRatio = CGFloat(3)
-        let image = getImage(urlImg)
+        image = getImage(urlImg)
         let theImageFrame = CGRect(x: view.frame.midX - image.size.width / imageRatio / 2 , y: 90, width: image.size.width / imageRatio, height: image.size.height / imageRatio)
         let imageView = UIImageView(frame: theImageFrame)
         imageView.image = image
@@ -73,29 +80,65 @@ class TrackDetailedViewController: UIViewController {
         lyricView.isScrollEnabled = true
         view.addSubview(lyricView)
         
-//        print(getLyric(trackTitle, artist))
-        //play(urlPreview)
+        let button1 = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(favBtnClicked))
+        self.navigationItem.rightBarButtonItem  = button1
     }
     
-        @objc func streamBtnClicked(){
-            if(downloadable){
-                MusicDownload.loadFileAsync(url: URL(string: uri)!) { (path, error) in
-                            print("Music File downloaded to : \(path!)")
-                }
-            } else{
-                print(TrackDetailedViewController.uriToUrl(uri))
-                let webVC = WebViewController()
-                let searchURL = TrackDetailedViewController.uriToUrl(uri)
-                let url = URL(string: searchURL)!
-                let spotifyURLRequest = URLRequest(url: url)
-                
-                webVC.url = spotifyURLRequest
-                webVC.name = trackTitle
-                
-                navigationController?.pushViewController(webVC, animated: true)
-            }
+    @objc func favBtnClicked() {
+        
+        if UserDefaults.standard.array(forKey: self.keyFavTrack) == nil {
+            UserDefaults.standard.set([], forKey: self.keyFavTrack)
         }
-    
+        if UserDefaults.standard.array(forKey: self.keyArtist) == nil {
+            UserDefaults.standard.set([], forKey: self.keyArtist)
+        }
+        if UserDefaults.standard.array(forKey: self.keyImage) == nil {
+            UserDefaults.standard.set([], forKey: self.keyImage)
+        }
+        if UserDefaults.standard.array(forKey: self.keyUri) == nil {
+            UserDefaults.standard.set([], forKey: self.keyUri)
+        }
+        
+        var favTrack:[String] = UserDefaults.standard.array(forKey: self.keyFavTrack)! as? [String] ?? []
+        var favArtist:[String] = UserDefaults.standard.array(forKey: self.keyArtist)! as? [String] ?? []
+        var favImageUrl:[String] = UserDefaults.standard.array(forKey: self.keyImage)! as? [String] ?? []
+        var favUri:[String] = UserDefaults.standard.array(forKey: self.keyUri)! as? [String] ?? []
+                
+        if(favTrack.contains(self.trackTitle) && favArtist.contains(self.artist)){
+            return
+        }
+        favTrack.append(self.trackTitle)
+        favArtist.append(self.artist)
+        favImageUrl.append(self.urlImg)
+        favUri.append(self.uri)
+        
+//        print(favTrack)
+//        print(favImageUrl)
+        UserDefaults.standard.set(favTrack, forKey: self.keyFavTrack)
+        UserDefaults.standard.set(favArtist, forKey: self.keyArtist)
+        UserDefaults.standard.set(favImageUrl, forKey: self.keyImage)
+        UserDefaults.standard.set(favUri, forKey: self.keyUri)
+    }
+
+    @objc func streamBtnClicked(){
+        if(downloadable){
+            MusicDownload.loadFileAsync(url: URL(string: uri)!) { (path, error) in
+                        print("Music File downloaded to : \(path!)")
+            }
+        } else{
+            print(TrackDetailedViewController.uriToUrl(uri))
+            let webVC = WebViewController()
+            let searchURL = TrackDetailedViewController.uriToUrl(uri)
+            let url = URL(string: searchURL)!
+            let spotifyURLRequest = URLRequest(url: url)
+            
+            webVC.url = spotifyURLRequest
+            webVC.name = trackTitle
+            
+            navigationController?.pushViewController(webVC, animated: true)
+        }
+    }
+
     static func uriToUrl(_ uri: String!) -> String{
         if uri != nil {
             return "https://open.spotify.com" + uri.suffix(uri.count - 7).replacingOccurrences(of: ":", with: "/")
