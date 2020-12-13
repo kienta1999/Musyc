@@ -52,6 +52,15 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
         let artist:Artist
     }
     
+    struct MusicInfo: Decodable{
+        var data: [MusicFile]
+        var code: Int
+    }
+    
+    struct MusicFile: Decodable{
+        var url: String
+    }
+    
     
     
 //           struct APIResults:Decodable {
@@ -159,9 +168,9 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
 
 
             do{
-                print("try decode")
+//                print("try decode")
                 let songs = (try JSONDecoder().decode(APIResultsWrapper.self, from: Data(responseString.utf8))).result.songs
-                print("songs", songs.count)
+//                print("songs", songs.count)
                 var tempTrack:[String] = []
                 for element in songs{
                     tempTrack.append(element.name)
@@ -189,8 +198,30 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
             }
             
     func IdToUrl(id:Int) -> String {
-        return defaultAddress + "/song/url?id=" + String(id) + "&br=999000"
+         let url = defaultAddress + "/song/url?id=" + String(id) + "&br=999000"
+//        print(url)
+        return url
     }
+    
+    static func urlToMusicUrl(url:String) -> String {
+        print("url: \(url)")
+        let data = try! Data(contentsOf: URL(string:url)!)
+        let theMusic = try! JSONDecoder().decode(MusicInfo.self, from: data)
+        
+        if (theMusic.code >= 200 && theMusic.code < 300) {
+            print("find musicUrl")
+            let musicUrl = theMusic.data[0].url
+            if (musicUrl.isEmpty || musicUrl.count == 0) {
+                print("url is empty")
+                return ""
+            }
+            return theMusic.data[0].url
+        } else {
+            print("fail to get music, code is \(theMusic.code)")
+            return ""
+        }
+    }
+    
     
             func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
                 let detailedVC = TrackDetailedViewController()
