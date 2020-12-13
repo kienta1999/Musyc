@@ -83,7 +83,7 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
             if editingStyle == .delete{
                 let title = tableView.cellForRow(at: indexPath)?.textLabel!.text
                 for i in 0 ..< self.favTrack.count {
-                    if(getTrackDetail(self.favTrack[indexPath.row], self.favArtist[indexPath.row]) == title){
+                    if(getTrackDetail(self.favTrack[i], self.favArtist[i]) == title){
                         
                         self.favTrack.remove(at: i)
                         self.favArtist.remove(at: i)

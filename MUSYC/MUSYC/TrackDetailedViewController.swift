@@ -60,9 +60,16 @@ class TrackDetailedViewController: UIViewController {
         let streamBtnFrame = CGRect(x: 0, y: image.size.height / imageRatio + 110 + distanceBtwElement * 2, width: view.frame.width, height: 30)
         let streamBtn = UIButton(frame: streamBtnFrame)
         streamBtn.backgroundColor = UIColor(named: "buttonBackground")
-        streamBtn.setTitle("Stream", for: .normal)
-        streamBtn.setTitleColor(.systemTeal, for: .normal)
-        streamBtn.setTitleColor(.green, for: .normal)
+    
+        if(downloadable){
+            streamBtn.setTitle("Download", for: .normal)
+            streamBtn.setTitleColor(.systemTeal, for: .normal)
+        }
+        else{
+            streamBtn.setTitle("Stream", for: .normal)
+            streamBtn.setTitleColor(.green, for: .normal)
+        }
+        
         streamBtn.layer.borderColor = UIColor(named: "buttonBorder")?.cgColor
         streamBtn.addTarget(self, action: #selector(streamBtnClicked), for: .touchUpInside)
         view.addSubview(streamBtn)
@@ -231,7 +238,7 @@ class TrackDetailedViewController: UIViewController {
             let url = URL(string: path!)!
             let playerItem = AVPlayerItem(url: url)
 
-            player = try AVPlayer(playerItem:playerItem)
+            player = try! AVPlayer(playerItem:playerItem)
             player.volume = 1.0
             player.play()
         } catch {

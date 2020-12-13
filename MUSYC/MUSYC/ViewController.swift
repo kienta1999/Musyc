@@ -21,43 +21,22 @@ class ViewController: UIViewController{
     var numAppear = 0
     
     override func viewDidLoad() {
+        self.title = "Download"
         view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         super.viewDidLoad()
     }
     
     
-    @IBAction func loginClicked(_ sender: Any) {
-        let webVC = WebViewController()
-        let url = URL(string: "https://accounts.spotify.com/")!
-        let spotifyURLRequest = URLRequest(url: url)
-        
-        webVC.url = spotifyURLRequest
-        webVC.name = "Login"
-        
-        navigationController?.pushViewController(webVC, animated: true)
-    }
     override func viewDidAppear(_ animated: Bool) {
-        numAppear += 1
-        print(numAppear)
-        if(numAppear == 2){
-            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-
-            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! SearchViewController
-            self.present(nextViewController, animated:true, completion:nil)
-        }
-    }
-    
-//    func setup () {
-//        // insert redirect your url and client ID below
-//        let redirectURL = "Spotify-Demo://returnAfterLogin" // put your redirect URL here
-//        let clientID = "476c620368f349cc8be5b2a29b596eaf" // put your client ID here
-//        auth.redirectURL     = URL(string: redirectURL)
-//        auth.clientID        = "476c620368f349cc8be5b2a29b596eaf"
-//        auth.requestedScopes = [SPTAuthStreamingScope, SPTAuthPlaylistReadPrivateScope, SPTAuthPlaylistModifyPublicScope, SPTAuthPlaylistModifyPrivateScope]
-//        loginUrl = auth.spotifyWebAuthenticationURL()
+//        numAppear += 1
+//        print(numAppear)
+//        if(numAppear == 2){
+//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
 //
-////       searchButtn.alpha = 0
-//    }
+//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! SearchViewController
+//            self.present(nextViewController, animated:true, completion:nil)
+//        }
+    }
 
 
 }

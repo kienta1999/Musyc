@@ -110,10 +110,10 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-                   myCell.textLabel!.text = theData[indexPath.row] + " (" + theArtist[indexPath.row] + ")"
-                   myCell.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
-                   myCell.textLabel!.textColor = .white
-                   return myCell
+       myCell.textLabel!.text = theData[indexPath.row] + " (" + theArtist[indexPath.row] + ")"
+       myCell.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
+       myCell.textLabel!.textColor = .white
+       return myCell
     }
     
     func setupTableView(){
