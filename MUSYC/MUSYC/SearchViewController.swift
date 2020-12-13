@@ -119,6 +119,10 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                     print("response = \(response)")
                     return
                 }
+                
+                if(response.statusCode == 401) {
+                    UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
+                }
 
                 let responseString = String(data: data, encoding: .utf8)
                 //self.access_token = responseString!.components(separatedBy: "\"")[3]
@@ -138,6 +142,9 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             myCell.textLabel!.text = theData[indexPath.row] + " (" + theArtist[indexPath.row] + ")"
             myCell.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
             myCell.textLabel!.textColor = .white
+            DispatchQueue.main.async{
+                myCell.imageView?.image = self.getImage(self.theImage[indexPath.row])
+            }
             return myCell
         }
     
@@ -225,14 +232,13 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             fetchTracksForTableiew()
         }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
+        func getImage(_ path: String) -> UIImage{
+            let url = URL(string: path)
+            let data = try? Data(contentsOf: url!)
+            if(data == nil){
+                return UIImage(named: "image-not-found")!
+            }
+            return UIImage(data: data!)!
+        }
 
 }

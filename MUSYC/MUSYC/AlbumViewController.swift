@@ -171,6 +171,11 @@ class AlbumViewController: UIViewController, UISearchBarDelegate, UICollectionVi
                     }
                     return
                 }
+                
+                if(response.statusCode == 401) {
+                    UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
+                }
+                
                 let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
                 print(responseString)
                 

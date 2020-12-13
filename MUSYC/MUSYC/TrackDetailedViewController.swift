@@ -118,6 +118,10 @@ class TrackDetailedViewController: UIViewController {
         UserDefaults.standard.set(favArtist, forKey: self.keyArtist)
         UserDefaults.standard.set(favImageUrl, forKey: self.keyImage)
         UserDefaults.standard.set(favUri, forKey: self.keyUri)
+        
+        let alert = UIAlertController(title: "Add to Favorite", message: "You've added this song to your Favorite List", preferredStyle: UIAlertController.Style.alert)
+        alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+        self.present(alert, animated: true, completion: nil)
     }
 
     @objc func streamBtnClicked(){
@@ -150,11 +154,8 @@ class TrackDetailedViewController: UIViewController {
     }
     
     func getImage(_ path: String) -> UIImage{
-           let url = URL(string: path)
-           let data = try? Data(contentsOf: url!)
-//           if(data == nil){
-//               return UIImage(named: "img_not_found")!
-//           }
+       let url = URL(string: path)
+       let data = try? Data(contentsOf: url!)
         return UIImage(data: data!)!
     }
     

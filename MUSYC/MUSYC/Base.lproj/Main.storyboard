@@ -309,10 +309,13 @@
                                 <rect key="frame" x="302" y="235" width="57" height="41"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="18"/>
-                                <state key="normal" title="Edit"/>
+                                <state key="normal" title="Clear"/>
+                                <connections>
+                                    <action selector="clearAllFavorite:" destination="oqo-0i-xXk" eventType="touchUpInside" id="EPw-Q9-ihx"/>
+                                </connections>
                             </button>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Rth-Vs-GLS">
-                                <rect key="frame" x="0.0" y="284" width="375" height="445"/>
+                                <rect key="frame" x="0.0" y="284" width="375" height="453"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>

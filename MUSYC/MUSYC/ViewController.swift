@@ -21,6 +21,7 @@ class ViewController: UIViewController{
     var numAppear = 0
     
     override func viewDidLoad() {
+        view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         super.viewDidLoad()
     }
     

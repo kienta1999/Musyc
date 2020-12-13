@@ -29,13 +29,13 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         // Do any additional setup after loading the view.
-        
+        self.title = "Favourite Songs"
         favouriteTrackTable.register(UITableViewCell.self, forCellReuseIdentifier: "theCell")
         favouriteTrackTable.dataSource = self
         favouriteTrackTable.delegate = self
-        
+        favouriteTrackTable.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -68,9 +68,13 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let myCell = tableView.dequeueReusableCell(withIdentifier: "theCell")! as UITableViewCell
-        
-        
+        myCell.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
+//        DispatchQueue.main.async{
+//            myCell.imageView?.image = self.getImage(self.favImageUrl[indexPath.row])
+//        }
+        myCell.imageView?.image = self.getImage(self.favImageUrl[indexPath.row])
         myCell.textLabel!.text = getTrackDetail(favTrack[indexPath.row], favArtist[indexPath.row])
+        myCell.textLabel!.textColor = .white
         
         return myCell
     }
@@ -104,9 +108,31 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
             detailedVC.trackTitle = favTrack[index]
             detailedVC.artist = favArtist[index]
             detailedVC.urlImg = favImageUrl[index]
-            detailedVC.uri = favImageUrl[index]
+            detailedVC.uri = favUri[index]
             self.navigationController?.pushViewController(detailedVC, animated: true)
         }
+    
+    func getImage(_ path: String) -> UIImage{
+        let url = URL(string: path)
+        let data = try? Data(contentsOf: url!)
+        if(data == nil){
+            return UIImage(named: "image-not-found")!
+        }
+        return UIImage(data: data!)!
+    }
+    
+    
+    @IBAction func clearAllFavorite(_ sender: Any) {
+        UserDefaults.standard.set([], forKey: self.keyFavTrack)
+        UserDefaults.standard.set([], forKey: self.keyArtist)
+        UserDefaults.standard.set([], forKey: self.keyImage)
+        UserDefaults.standard.set([], forKey: self.keyUri)
+        favTrack = []
+        favArtist = []
+        favImageUrl = []
+        favUri = []
+    }
+    
     
     
 
