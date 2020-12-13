@@ -115,10 +115,11 @@ class SignUpViewController: UIViewController {
     }
     
     func gobackToHome(){
-        let HomeViewController = storyboard?.instantiateViewController(identifier: invariable.Storyboard.HomeViewController) as? HomeViewController
-        
-        view.window?.rootViewController = HomeViewController
-        view.window?.makeKeyAndVisible()
+//        let HomeViewController = storyboard?.instantiateViewController(identifier: invariable.Storyboard.HomeViewController) as? HomeViewController
+//
+//        view.window?.rootViewController = HomeViewController
+//        view.window?.makeKeyAndVisible()
+        self.performSegue(withIdentifier: "SignUpSegue", sender: nil)
     }
     
     

@@ -52,10 +52,13 @@ class SignInViewController: UIViewController {
                 self.errorLabel.alpha = 1
             }
             else{
-                let HomeViewController = self.storyboard?.instantiateViewController(identifier: invariable.Storyboard.HomeViewController) as? HomeViewController
-                       
-                self.view.window?.rootViewController = HomeViewController
-                self.view.window?.makeKeyAndVisible()
+                self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+//                let HomeViewController = self.storyboard?.instantiateViewController(identifier: invariable.Storyboard.HomeViewController) as? HomeViewController
+//
+//
+//                //PlayVC
+//                self.view.window?.rootViewController = ViewController
+//                self.view.window?.makeKeyAndVisible()
             }
             
         }

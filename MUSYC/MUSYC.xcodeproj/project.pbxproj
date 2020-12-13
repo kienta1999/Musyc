@@ -10,6 +10,7 @@
 		2E3DDA402584B4B2006848AD /* MusicDownload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DDA3E2584B4AF006848AD /* MusicDownload.swift */; };
 		2E3DDA412584B4B2006848AD /* MusicPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E3DDA3F2584B4B2006848AD /* MusicPlayer.swift */; };
 		2E9295E92585849200128F2A /* SearchNesteaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E9295E82585849200128F2A /* SearchNesteaseViewController.swift */; };
+		504886AF2585C59D00A879AC /* CoverViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 504886AE2585C59D00A879AC /* CoverViewController.swift */; };
 		507DA7752571C52B00212DA7 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 507DA7742571C52B00212DA7 /* GoogleService-Info.plist */; };
 		50B6B32E2571DC8B006E8D43 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */; };
 		50B6B3302571DCA2006E8D43 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */; };
@@ -35,6 +36,7 @@
 		2E3DDA3E2584B4AF006848AD /* MusicDownload.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicDownload.swift; sourceTree = "<group>"; };
 		2E3DDA3F2584B4B2006848AD /* MusicPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MusicPlayer.swift; sourceTree = "<group>"; };
 		2E9295E82585849200128F2A /* SearchNesteaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchNesteaseViewController.swift; sourceTree = "<group>"; };
+		504886AE2585C59D00A879AC /* CoverViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverViewController.swift; sourceTree = "<group>"; };
 		507DA7742571C52B00212DA7 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		50B6B32D2571DC8B006E8D43 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		50B6B32F2571DCA2006E8D43 /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				50B6B3372572D108006E8D43 /* LoginPageViewController.swift */,
 				50B6B3392572DE4B006E8D43 /* others.swift */,
 				50B6B33B2572FFDD006E8D43 /* invariable.swift */,
+				504886AE2585C59D00A879AC /* CoverViewController.swift */,
 			);
 			path = "Login page Controller";
 			sourceTree = "<group>";
@@ -279,6 +282,7 @@
 				2E3DDA402584B4B2006848AD /* MusicDownload.swift in Sources */,
 				ACEA441C25740F8100912E3D /* TrackDetailedViewController.swift in Sources */,
 				AC3810DE256FF7D100BF8D0B /* SearchViewController.swift in Sources */,
+				504886AF2585C59D00A879AC /* CoverViewController.swift in Sources */,
 				2E3DDA412584B4B2006848AD /* MusicPlayer.swift in Sources */,
 				7829E4FD256230E70049E4A0 /* SceneDelegate.swift in Sources */,
 				50B6B3382572D108006E8D43 /* LoginPageViewController.swift in Sources */,
