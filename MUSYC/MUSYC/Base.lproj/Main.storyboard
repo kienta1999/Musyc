@@ -242,6 +242,15 @@
                                 <rect key="frame" x="67" y="232" width="240" height="240"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-wN-Rfo">
+                                <rect key="frame" x="132" y="669" width="121" height="33"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <state key="normal" title="Sign in as guest"/>
+                                <connections>
+                                    <action selector="guestBtn:" destination="WDu-8v-v2j" eventType="touchUpInside" id="M29-lN-vXI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
@@ -252,10 +261,13 @@
                         <viewLayoutGuide key="safeArea" id="6VP-PV-kgG"/>
                     </view>
                     <navigationItem key="navigationItem" id="ogY-HR-yTD"/>
+                    <connections>
+                        <segue destination="ILn-1U-ARi" kind="modal" identifier="LoginSegue" modalPresentationStyle="fullScreen" id="NzJ-ZM-GUy"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Pm-XQ-DZF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2924" y="2443.5960591133007"/>
+            <point key="canvasLocation" x="2952.8000000000002" y="2372.6600985221676"/>
         </scene>
         <!--Favourite View Controller-->
         <scene sceneID="OAT-qA-yIJ">
@@ -652,7 +664,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="LqQ-qa-LnZ"/>
+        <segue reference="NzJ-ZM-GUy"/>
         <segue reference="ZkU-Yk-dLn"/>
     </inferredMetricsTieBreakers>
     <resources>

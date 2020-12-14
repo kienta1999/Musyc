@@ -16,7 +16,9 @@ class LoginPageViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func guestBtn(_ sender: Any) {
+        self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+    }
     /*
     // MARK: - Navigation
 

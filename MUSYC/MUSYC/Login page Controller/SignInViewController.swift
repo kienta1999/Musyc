@@ -19,6 +19,8 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var signInButton: UIButton!
 
     
+
+    
     @IBOutlet weak var errorLabel: UILabel!
     
     override func viewDidLoad() {
@@ -37,7 +39,7 @@ class SignInViewController: UIViewController {
         // Pass the selected object to the new view controller.
     }
     */
-
+    
     
     @IBAction func logInClicked(_ sender: Any) {
         
