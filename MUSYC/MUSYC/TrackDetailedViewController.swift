@@ -151,10 +151,18 @@ class TrackDetailedViewController: UIViewController {
 
     @objc func streamBtnClicked(){
         if(downloadable){
-            let downloadPath = SearchNesteaseViewController.urlToMusicUrl(url: uri)
-            MusicDownload.renameFileAndloadFileAsync(name: self.trackTitle, url: URL(string:downloadPath)!) {(path, error) in
-//            MusicDownload.loadFileAsync(url: URL(string: downloadPath)!) { (path, error) in
+            if let downloadPath = SearchNesteaseViewController.urlToMusicUrlOption(url: uri) {
+                MusicDownload.renameFileAndloadFileAsync(name: self.trackTitle, url: URL(string:downloadPath)!) {(path, error) in
+                    let alert = UIAlertController(title: "Start Download", message: "music is downloading to \(path ?? "your File application")", preferredStyle: UIAlertController.Style.alert)
+                alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                    self.present(alert, animated: true, completion: nil)
                         print("Music File downloaded to : \(path!)")
+                }
+            } else {
+            let alert = UIAlertController(title: "Sorry", message: "Download is not available for this song", preferredStyle: UIAlertController.Style.alert)
+               alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
+                self.present(alert, animated: true, completion: nil)
+                return
             }
         } else{
             print(TrackDetailedViewController.uriToUrl(uri))

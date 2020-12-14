@@ -58,7 +58,7 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     struct MusicFile: Decodable{
-        var url: String
+        var url: String?
     }
     
     
@@ -203,23 +203,11 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
         return url
     }
     
-    static func urlToMusicUrl(url:String) -> String {
+    static func urlToMusicUrlOption(url:String) -> String? {
         print("url: \(url)")
         let data = try! Data(contentsOf: URL(string:url)!)
         let theMusic = try! JSONDecoder().decode(MusicInfo.self, from: data)
-        
-        if (theMusic.code >= 200 && theMusic.code < 300) {
-            print("find musicUrl")
-            let musicUrl = theMusic.data[0].url
-            if (musicUrl.isEmpty || musicUrl.count == 0) {
-                print("url is empty")
-                return ""
-            }
-            return theMusic.data[0].url
-        } else {
-            print("fail to get music, code is \(theMusic.code)")
-            return ""
-        }
+        return theMusic.data[0].url
     }
     
     

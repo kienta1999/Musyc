@@ -46,7 +46,8 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
         //add a check so if user not logged in, jump to log in page
         if (UserDefaults.standard.bool(forKey: "loggedIn") == Optional.none || !UserDefaults.standard.bool(forKey: "loggedIn")) {
             UserDefaults.standard.set(false, forKey: "loggedIn")
-            
+            let alert = UIAlertController(title: "Please Login", message: "You have to log in so you can use Favorite List", preferredStyle: UIAlertController.Style.alert)
+                       alert.addAction(UIAlertAction(title: "Ok", style: UIAlertAction.Style.default, handler: nil))
             self.performSegue(withIdentifier: "SignUpSegue", sender: nil)
 
         }
