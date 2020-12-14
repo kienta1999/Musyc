@@ -243,10 +243,10 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Iy9-wN-Rfo">
-                                <rect key="frame" x="132" y="669" width="121" height="33"/>
+                                <rect key="frame" x="176" y="669" width="34" height="33"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <state key="normal" title="Sign in as guest"/>
+                                <state key="normal" title="Skip"/>
                                 <connections>
                                     <action selector="guestBtn:" destination="WDu-8v-v2j" eventType="touchUpInside" id="M29-lN-vXI"/>
                                 </connections>
