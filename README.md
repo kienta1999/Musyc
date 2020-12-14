@@ -17,13 +17,10 @@ This is a music player application implemented three APIs that can search and do
 3. Album tab:
 - Similar to search, album tab can search albums on Spotify and listen online.
   
-  4. Favorite tab:
+4. Favorite tab:
 - You can find your favorite online songs here after login. Click on the song will go to the detail page. You can right drag the song to delete it from the table, you can also clear the table by clicking “clear”.
-
 - The list is saved locally and won’t lose if you close the app.
-
 - If you are not log in, a login page will show up to prompt you to log in. 
    
-   5. User tab:
+5. User tab:
 - You can log in, sign up, or sign out at this tab. Once click, a login page will show up to prompt you to log in. Click “skip” will redirect you to the first tab.  Or you can sign in by “sign in”, and “sign up” by “sign up”.  Once you sign in, you don’t need to sign in again if you close the app and reopen it. Instead, you will see a welcome page. You can sign out by click sign out button.
-   
