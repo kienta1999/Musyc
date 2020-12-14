@@ -59,14 +59,14 @@ class AppDelegate:  UIResponder, UIApplicationDelegate, SPTAppRemoteDelegate, SP
     }
     
     internal func application(_ app: UIApplication, open url: URL, options: [UIApplication.OpenURLOptionsKey : Any] = [:]) -> Bool {
-      let parameters = appRemote.authorizationParameters(from: url);
-
-            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
-                appRemote.connectionParameters.accessToken = access_token
-                self.accessToken = access_token
-            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
-                // Show the error
-            }
+//      let parameters = appRemote.authorizationParameters(from: url);
+//
+//            if let access_token = parameters?[SPTAppRemoteAccessTokenKey] {
+//                appRemote.connectionParameters.accessToken = access_token
+//                self.accessToken = access_token
+//            } else if let error_description = parameters?[SPTAppRemoteErrorDescriptionKey] {
+//                // Show the error
+//            }
       return true
     }
     

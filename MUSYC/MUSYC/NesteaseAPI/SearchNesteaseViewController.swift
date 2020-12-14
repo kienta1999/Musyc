@@ -60,37 +60,6 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
     struct MusicFile: Decodable{
         var url: String?
     }
-    
-    
-    
-//           struct APIResults:Decodable {
-//               let href: String
-//               let items: [Track]
-//               let limit: Int
-//               let next: String?
-//               let offset: Int
-//               let previous: String?
-//               let total: Int
-//           }
-//
-//           struct Track: Decodable {
-//               let name: String
-//               let album: Album
-//               let preview_url: String!
-//               let artists: [Artist]
-//               let uri: String
-//           }
-//           struct Album: Decodable{
-//               let images: [AlbumImage]
-//           }
-//           struct AlbumImage: Decodable{
-//               let url: String
-//           }
-//
-//           struct Artist: Decodable{
-//               let name: String
-//           }
-    
 
     let appDelegate = UIApplication.shared.delegate as! AppDelegate
     
@@ -139,19 +108,16 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
         ]
         print(components.url!)
         var request = URLRequest(url: components.url!)
-//                request.setValue("application/x-www-form-urlencoded", forHTTPHeaderField: "Content-Type")
-//                request.setValue("Bearer " + UserDefaults.standard.string(forKey: "access_token")!, forHTTPHeaderField: "Authorization")
         request.httpMethod = "GET"
-        //        request.httpBody = Data(query!.utf8)
-//
+
         let task = URLSession.shared.dataTask(with: request) { data, response, error in
 
             guard let data = data,
                 let response = response as? HTTPURLResponse,
                 error == nil else {                                              // check for fundamental networking error
-                print("error", error ?? "Unknown error")
-                return
-            }
+                    print("error", error ?? "Unknown error")
+                    return
+                }
 
             guard (200 ... 299) ~= response.statusCode else {                    // check for http errors
                 print("statusCode should be 2xx, but is \(response.statusCode)")
@@ -159,18 +125,13 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
                 //the access token is expired - need to get a new one
                 if(response.statusCode == 401){
                     UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
-//                        self.fetchTracksForTableiew()
                 }
                 return
             }
             let responseString = String(data: data, encoding: .utf8)!.replacingOccurrences(of: "\\/", with: "/")
-//            print("responseString"+responseString)
-
 
             do{
-//                print("try decode")
                 let songs = (try JSONDecoder().decode(APIResultsWrapper.self, from: Data(responseString.utf8))).result.songs
-//                print("songs", songs.count)
                 var tempTrack:[String] = []
                 for element in songs{
                     tempTrack.append(element.name)
@@ -181,25 +142,17 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
                     self.theId.append(element.id)
 
                 }
-
-//                print("theImage.capacity: ", self.theImage.count)
-//                print("thePreviewUrl", self.thePreviewUrl.count)
-//                print("theArtist", self.theArtist.count)
-//                print("the url", self.theUri.count)
-//                print("the id", self.theId.count)
                 self.theData = tempTrack
             }
             catch{
                 print("Not valid json")
             }
         }
-
         task.resume()
-            }
+    }
             
     func IdToUrl(id:Int) -> String {
          let url = defaultAddress + "/song/url?id=" + String(id) + "&br=999000"
-//        print(url)
         return url
     }
     
@@ -211,21 +164,21 @@ class SearchNesteaseViewController: UIViewController, UITableViewDelegate, UITab
     }
     
     
-            func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-                let detailedVC = TrackDetailedViewController()
-                let index = indexPath.row
-                detailedVC.trackTitle = theData[index]
-                detailedVC.urlImg = theImage[index]
-                detailedVC.urlPreview = thePreviewUrl[index]
-                detailedVC.artist = theArtist[index]
-                detailedVC.uri = theUri[index]
-                detailedVC.downloadable = true
-                
-                self.navigationController?.pushViewController(detailedVC, animated: true)
-            }
-            
-            func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-                fetchTracksForTableiew()
-            }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let detailedVC = TrackDetailedViewController()
+        let index = indexPath.row
+        detailedVC.trackTitle = theData[index]
+        detailedVC.urlImg = theImage[index]
+        detailedVC.urlPreview = thePreviewUrl[index]
+        detailedVC.artist = theArtist[index]
+        detailedVC.uri = theUri[index]
+        detailedVC.downloadable = true
+        
+        self.navigationController?.pushViewController(detailedVC, animated: true)
+    }
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        fetchTracksForTableiew()
+    }
     
 }

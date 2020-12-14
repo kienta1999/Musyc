@@ -73,12 +73,8 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             trackTableView.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
             super.viewDidLoad()
             self.title = "Search"
-            // Do any additional setup after loading the view.
-//            if(UserDefaults.standard.string(forKey: "access_token") == nil){
-//                
-//            }
             UserDefaults.standard.set(SearchViewController.getAccessToken(), forKey: "access_token")
-            //print(access_token)
+        
             setupTableView()
             trackQuery.delegate = self
         }
@@ -94,8 +90,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
             components.queryItems = [
                 URLQueryItem(name: "grant_type", value: "refresh_token"),
                 URLQueryItem(name: "refresh_token", value: refresh_token)
-    //            ,URLQueryItem(name: "client_id", value: client_id)
-    //            ,URLQueryItem(name: "client_secret", value: client_secret)
             ]
 
             let query = components.url!.query
@@ -125,7 +119,6 @@ class SearchViewController: UIViewController, UITableViewDelegate, UITableViewDa
                 }
 
                 let responseString = String(data: data, encoding: .utf8)
-                //self.access_token = responseString!.components(separatedBy: "\"")[3]
                 ans = responseString!.components(separatedBy: "\"")[3]
             }
             task.resume()

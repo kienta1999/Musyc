@@ -71,8 +71,8 @@
                     </view>
                     <navigationItem key="navigationItem" id="OMj-rP-Ok3"/>
                     <connections>
-                        <outlet property="trackQuery" destination="OAS-bG-VV4" id="mgE-06-vXe"/>
-                        <outlet property="trackTableView" destination="taF-n8-USa" id="JeN-g6-AyB"/>
+                        <outlet property="trackQuery" destination="OAS-bG-VV4" id="OsH-5H-mMg"/>
+                        <outlet property="trackTableView" destination="taF-n8-USa" id="arz-GC-sQH"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="r9t-CC-7Eh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -664,7 +664,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="NzJ-ZM-GUy"/>
+        <segue reference="G3i-v6-26D"/>
         <segue reference="ZkU-Yk-dLn"/>
     </inferredMetricsTieBreakers>
     <resources>

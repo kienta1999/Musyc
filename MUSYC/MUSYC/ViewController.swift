@@ -28,14 +28,7 @@ class ViewController: UIViewController{
     
     
     override func viewDidAppear(_ animated: Bool) {
-//        numAppear += 1
-//        print(numAppear)
-//        if(numAppear == 2){
-//            let storyBoard : UIStoryboard = UIStoryboard(name: "Main", bundle:nil)
-//
-//            let nextViewController = storyBoard.instantiateViewController(withIdentifier: "nextView") as! SearchViewController
-//            self.present(nextViewController, animated:true, completion:nil)
-//        }
+        
     }
 
 
