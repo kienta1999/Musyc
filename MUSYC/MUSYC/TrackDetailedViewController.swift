@@ -87,11 +87,18 @@ class TrackDetailedViewController: UIViewController {
         lyricView.isScrollEnabled = true
         view.addSubview(lyricView)
         
-        let button1 = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(favBtnClicked))
-        self.navigationItem.rightBarButtonItem  = button1
+        
+        if (!downloadable) {
+            let button1 = UIBarButtonItem(image: UIImage(named: "heart"), style: .plain, target: self, action: #selector(favBtnClicked))
+            self.navigationItem.rightBarButtonItem  = button1
+        }
+
     }
     
     @objc func favBtnClicked() {
+        if(downloadable) {
+            return;
+        }
         
         if (UserDefaults.standard.bool(forKey: "loggedIn") == Optional.none || !UserDefaults.standard.bool(forKey: "loggedIn")) {
             UserDefaults.standard.set(false, forKey: "loggedIn")
