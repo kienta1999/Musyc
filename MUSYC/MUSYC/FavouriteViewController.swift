@@ -27,13 +27,12 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
     
     @IBOutlet weak var favouriteTrackTable: UITableView!
     
-    //add a check so if user not logged in, jump to log in page
-//    if (UserDefaults.standard.bool(forKey: "loggedIn") != Optional.none) {
-//        UserDefaults.standard.set(false, forKey: "loggedIn")
-//    }
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        
         view.backgroundColor = UIColor.init(red: 87/255, green: 77/255, blue: 77/255, alpha: 1.0)
         // Do any additional setup after loading the view.
         self.title = "Favourite Songs"
@@ -44,6 +43,14 @@ class FavouriteViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        //add a check so if user not logged in, jump to log in page
+        if (UserDefaults.standard.bool(forKey: "loggedIn") == Optional.none || !UserDefaults.standard.bool(forKey: "loggedIn")) {
+            UserDefaults.standard.set(false, forKey: "loggedIn")
+            
+            self.performSegue(withIdentifier: "SignUpSegue", sender: nil)
+
+        }
+        
         if UserDefaults.standard.array(forKey: self.keyFavTrack) == nil {
             UserDefaults.standard.set([], forKey: self.keyFavTrack)
         }
